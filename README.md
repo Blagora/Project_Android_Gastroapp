@@ -1,8 +1,8 @@
-# Nombre de la aplicación
+# Gastroapp
 
-Reemplace este texto con una descripción de su aplicación.
+Aplicacion desarrollada para aquellos que disfrutan de experiencias gastronómicas a nivel Bogotá, además de opción de reservas normales o personalizadas, se busca exponerle a la gente eventos, restaurantes nuevos, reseñas verdaderas y además contenido de buena calidad con el fin de brindar la mejor experiencia de usuario.
 
-Author: Nombre del estudiante
+Autor: Julian Santiago Gonzalez Becerra
 
 ## Referencias
 
