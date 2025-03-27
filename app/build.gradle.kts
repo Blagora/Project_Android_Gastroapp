@@ -1,8 +1,8 @@
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    kotlin("kapt")
+    id("com.android.application")
     id("com.google.dagger.hilt.android")
+    kotlin("android")
+    kotlin("kapt")
 }
 
 android {
@@ -79,4 +79,9 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
+    implementation("androidx.core:core-ktx:1.12.0")
+    implementation("androidx.appcompat:appcompat:1.6.1")
+
 }
