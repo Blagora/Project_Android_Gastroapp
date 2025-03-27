@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/homeFragment"
+        android:icon="@drawable/ic_home"
+        android:title="Inicio" />
+    <item
+        android:id="@+id/restaurantsFragment"
+        android:icon="@drawable/ic_restaurant"
+        android:title="Restaurantes" />
+    <item
+        android:id="@+id/eventsFragment"
+        android:icon="@drawable/ic_event"
+        android:title="Eventos" />
+    <item
+        android:id="@+id/reservationsFragment"
+        android:icon="@drawable/ic_reservation"
+        android:title="Reservas" />
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/ic_person"
+        android:title="Perfil" />
+</menu> 
