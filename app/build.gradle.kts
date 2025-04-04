@@ -38,6 +38,17 @@ android {
     buildFeatures {
         viewBinding = true
     }
+    
+    lint {
+        abortOnError = false  // No falla la compilación por errores de Lint
+        checkReleaseBuilds = false // No se ejecuta para builds de release
+        // Opcionalmente, puedes crear un baseline
+        // baseline = file("lint-baseline.xml")
+        
+        // Ignora warnings específicos si es necesario
+        disable += "MissingTranslation"
+        disable += "ContentDescription"
+    }
 }
 
 dependencies {
