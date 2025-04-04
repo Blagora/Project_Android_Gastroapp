@@ -10,4 +10,9 @@
     <color name="overlay_green">@color/overlay_green_light</color>
     <color name="semi_transparent">@color/semi_transparent_light</color>
     <color name="error_color">@color/error</color>
+
+    <!-- Colores para eventos en modo claro -->
+    <color name="event_card_background">@color/event_card_light_green</color>
+    <color name="event_title_text">@color/event_title_color</color>
+    <color name="event_button_text">@color/white</color>
 </resources> 

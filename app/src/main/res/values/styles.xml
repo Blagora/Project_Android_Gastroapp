@@ -69,4 +69,9 @@
     <style name="Widget.GastroApp.TextView.Caption" parent="TextAppearance.GastroApp.Caption">
         <item name="android:textColor">@color/text_secondary</item>
     </style>
+
+    <style name="RoundedImageView">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
 </resources> 

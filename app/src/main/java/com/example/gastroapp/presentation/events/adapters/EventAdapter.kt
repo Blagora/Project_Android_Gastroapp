@@ -1,65 +1,57 @@
 package com.example.gastroapp.presentation.events.adapters
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
+import android.widget.Button
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners
+import com.bumptech.glide.request.RequestOptions
 import com.example.gastroapp.R
-import com.example.gastroapp.databinding.ItemEventBinding
 import com.example.gastroapp.presentation.events.models.Event
 
-class EventAdapter(private val onEventClick: (Event) -> Unit) :
-    ListAdapter<Event, EventAdapter.EventViewHolder>(EventDiffCallback()) {
+class EventAdapter(
+    private val events: List<Event>,
+    private val onEventClicked: (Event) -> Unit
+) : RecyclerView.Adapter<EventAdapter.EventViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): EventViewHolder {
-        val binding = ItemEventBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return EventViewHolder(binding)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_event, parent, false)
+        return EventViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: EventViewHolder, position: Int) {
-        holder.bind(getItem(position))
+        holder.bind(events[position])
     }
 
-    inner class EventViewHolder(private val binding: ItemEventBinding) :
-        RecyclerView.ViewHolder(binding.root) {
+    override fun getItemCount(): Int = events.size
+
+    inner class EventViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        private val eventImage: ImageView = itemView.findViewById(R.id.eventImage)
+        private val eventTitle: TextView = itemView.findViewById(R.id.eventTitle)
+        private val eventDescription: TextView = itemView.findViewById(R.id.eventDescription)
+        private val eventPrice: TextView = itemView.findViewById(R.id.eventPrice)
+        private val seeButton: Button = itemView.findViewById(R.id.seeButton)
 
         fun bind(event: Event) {
-            binding.apply {
-                eventTitle.text = event.title
-                eventDescription.text = event.description
-                eventPrice.text = "Precio: ${event.price}"
+            eventTitle.text = event.title
+            eventDescription.text = event.description
+            eventPrice.text = "Precio: ${event.price}"
 
-                Glide.with(eventImage)
-                    .load(event.imageUrl)
-                    .placeholder(R.drawable.perfil_vacio)
-                    .error(R.drawable.perfil_vacio)
-                    .centerCrop()
-                    .into(eventImage)
+            // Cargar la imagen con Glide
+            Glide.with(itemView.context)
+                .load(event.imageUrl)
+                .placeholder(R.drawable.placeholder_event)
+                .error(R.drawable.placeholder_event)
+                .apply(RequestOptions.bitmapTransform(RoundedCorners(16)))
+                .into(eventImage)
 
-                seeButton.setOnClickListener {
-                    onEventClick(event)
-                }
-
-                root.setOnClickListener {
-                    onEventClick(event)
-                }
+            seeButton.setOnClickListener {
+                onEventClicked(event)
             }
-        }
-    }
-
-    private class EventDiffCallback : DiffUtil.ItemCallback<Event>() {
-        override fun areItemsTheSame(oldItem: Event, newItem: Event): Boolean {
-            return oldItem.id == newItem.id
-        }
-
-        override fun areContentsTheSame(oldItem: Event, newItem: Event): Boolean {
-            return oldItem == newItem
         }
     }
 } 

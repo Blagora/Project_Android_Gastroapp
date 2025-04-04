@@ -11,4 +11,9 @@
     <color name="overlay_green">@color/overlay_green_dark</color>
     <color name="semi_transparent">@color/semi_transparent_dark</color>
     <color name="error_color">@color/error_dark</color>
+
+    <!-- Colores para eventos en modo oscuro -->
+    <color name="event_card_background">@color/event_card_dark_green</color>
+    <color name="event_title_text">@color/principal_green_light</color>
+    <color name="event_button_text">@color/white</color>
 </resources> 
