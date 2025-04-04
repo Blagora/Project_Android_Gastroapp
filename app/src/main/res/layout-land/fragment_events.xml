@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -12,11 +13,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="EVENTOS"
-        android:textColor="#2E7D32"
         android:textSize="32sp"
+        android:textColor="#2E7D32"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
     <LinearLayout
         android:id="@+id/searchBar"
@@ -26,8 +27,8 @@
         android:background="@drawable/search_background"
         android:orientation="horizontal"
         android:padding="12dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEventsTitle">
 
         <ImageView
@@ -40,10 +41,10 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:background="@android:color/transparent"
             android:hint="Buscar"
             android:textColorHint="@android:color/white"
-            android:textSize="16sp" />
+            android:background="@android:color/transparent"
+            android:textSize="16sp"/>
 
     </LinearLayout>
 
@@ -53,22 +54,21 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="En curso"
-        android:textColor="#2E7D32"
         android:textSize="24sp"
+        android:textColor="#2E7D32"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/searchBar" />
+        app:layout_constraintTop_toBottomOf="@id/searchBar"/>
 
     <androidx.cardview.widget.CardView
         android:id="@+id/cardBurgerMaster"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvEnCurso">
 
         <LinearLayout
@@ -122,7 +122,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@drawable/button_background"
-                android:layout_margin="15dp"
                 android:text="VER"
                 android:textColor="@android:color/white" />
 
@@ -135,17 +134,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"
         app:cardCornerRadius="12dp"
         app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/cardBurgerMaster">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#d2f3d6"
             android:orientation="horizontal"
             android:padding="12dp">
 
@@ -153,7 +150,7 @@
                 android:layout_width="90dp"
                 android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/perfil_vacio" />
+                android:src="@drawable/perfil_vacio"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -166,36 +163,35 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Pizza Máster Bogotá"
-                    android:textColor="@android:color/black"
                     android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="@android:color/black"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
                     android:text="Concurso de pizzas del 10 al 17 de octubre de 2024 en la ciudad de Bogotá"
+                    android:textSize="14sp"
                     android:textColor="#757575"
-                    android:textSize="14sp" />
+                    android:layout_marginTop="4dp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
                     android:text="Precio: 14.000 COP"
-                    android:textColor="#43A047"
                     android:textSize="16sp"
-                    android:textStyle="bold" />
+                    android:textStyle="bold"
+                    android:textColor="#43A047"
+                    android:layout_marginTop="8dp"/>
 
             </LinearLayout>
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="15dp"
                 android:background="@drawable/button_background"
                 android:text="VER"
-                android:textColor="@android:color/white" />
+                android:textColor="@android:color/white"/>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
@@ -205,70 +201,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
         android:text="Ver más >"
-        android:textColor="#2E7D32"
         android:textSize="16sp"
+        android:textColor="#2E7D32"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardBogotaEats" />
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardVerMas"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="12dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/tvVerMas">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#d2f3d6"
-            android:orientation="horizontal"
-            android:padding="12dp">
-
-            <ImageView
-                android:layout_width="90dp"
-                android:layout_height="90dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/perfil_vacio" />
-
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
-                android:layout_weight="1"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Bogota Eats"
-                    android:textColor="@android:color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="4dp"
-                    android:text="festival de comida a cielo abierto"
-                    android:textColor="#757575"
-                    android:textSize="14sp" />
-
-            </LinearLayout>
-
-            <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="@drawable/button_background"
-                android:layout_margin="15dp"
-                android:text="VER"
-                android:textColor="@android:color/white" />
-        </LinearLayout>
-    </androidx.cardview.widget.CardView>
+        app:layout_constraintTop_toBottomOf="@id/cardBogotaEats"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
