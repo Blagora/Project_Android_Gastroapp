@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="35dp"
+    android:background="@color/transparent"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <TextView
+            android:id="@+id/tvCrearResena"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Crear Reseña"
+            android:textSize="28sp"
+            android:textStyle="bold"
+            android:textColor="#188f13"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/tvCalificaExperiencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Califica tu experiencia"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPuntuaExperiencia"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntua de 1 a 5"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star_border"
+                android:tint="#757575"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCalificaAtencion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Califica la atención"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPuntuaAtencion"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntua de 1 a 5"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star_border"
+                android:tint="#757575"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvCalificaInstalaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Califica las instalaciones"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/tvPuntuaInstalaciones"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Puntua de 1 a 5"
+            android:textSize="14sp"
+            android:textColor="#757575"
+            android:layout_marginBottom="12dp"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="24dp">
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star"
+                android:tint="#FFC107"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star_border"
+                android:tint="#757575"/>
+
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:src="@drawable/ic_star_border"
+                android:tint="#757575"/>
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvDejaComentario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Deja un comentario"
+            android:textSize="18sp"
+            android:textColor="@android:color/black"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/etResumenExperiencia"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Resume tu experiencia"
+            android:textSize="16sp"
+            android:padding="12dp"
+            android:background="@drawable/rounded_edittext"
+            android:gravity="top|start"
+            android:minHeight="80dp"
+            android:layout_marginBottom="24dp"/>
+
+        <Button
+            android:id="@+id/btnEnviar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Enviar"
+            android:textSize="18sp"
+            android:textColor="@android:color/white"
+            android:background="@drawable/rounded_button_green"
+            android:paddingStart="48dp"
+            android:paddingEnd="48dp"
+            android:layout_gravity="center_horizontal"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

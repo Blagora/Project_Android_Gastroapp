@@ -54,13 +54,6 @@
             android:layout_height="24dp"
             android:layout_marginStart="8dp"
             android:background="#BDBDBD" />
-
-        <ImageView
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginStart="8dp"
-            android:src="@drawable/ic_menu"
-            app:tint="#757575" />
     </LinearLayout>
 
     <androidx.cardview.widget.CardView
@@ -167,10 +160,10 @@
             android:padding="12dp">
 
             <ImageView
-                android:layout_width="96dp"
-                android:layout_height="72dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/fit_restaurant_placeholder" />
+                android:src="@drawable/perfil_vacio"/>
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -182,7 +175,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fit Restaurante"
+                    android:text="Nombre restaurante"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -191,7 +184,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Saludable / Vegetariano / Vegano"
+                    android:text="Categorias"
                     android:textColor="#757575"
                     android:textSize="12sp" />
 
@@ -236,7 +229,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:text="4.1"
+                        android:text="Calificacion"
                         android:textSize="12sp"
                         android:textColor="#757575" />
                 </LinearLayout>
@@ -245,7 +238,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Precios desde $ 20.000 COP"
+                    android:text="Rango de precio"
                     android:textColor="#43A047"
                     android:textSize="12sp"
                     android:textStyle="bold" />
@@ -258,13 +251,13 @@
         android:id="@+id/cardRecommendedItem2"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         app:cardBackgroundColor="#E0F7FA"
         app:cardCornerRadius="8dp"
         app:cardElevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cardRecommendedItem">
+        app:layout_constraintTop_toBottomOf="@+id/cardRecommendedItem">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -273,10 +266,10 @@
             android:padding="12dp">
 
             <ImageView
-                android:layout_width="96dp"
-                android:layout_height="72dp"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
                 android:scaleType="centerCrop"
-                android:src="@drawable/fit_restaurant_placeholder" />
+                android:src="@drawable/perfil_vacio" />
 
             <LinearLayout
                 android:layout_width="0dp"
@@ -288,7 +281,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Fit Restaurante"
+                    android:text="Nombre restaurante"
                     android:textColor="@android:color/black"
                     android:textSize="16sp"
                     android:textStyle="bold" />
@@ -297,7 +290,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="Saludable / Vegetariano / Vegano"
+                    android:text="Categorias"
                     android:textColor="#757575"
                     android:textSize="12sp" />
 
@@ -342,16 +335,16 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="4dp"
-                        android:text="4.1"
-                        android:textSize="12sp"
-                        android:textColor="#757575" />
+                        android:text="Calificacion"
+                        android:textColor="#757575"
+                        android:textSize="12sp" />
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Precios desde $ 20.000 COP"
+                    android:text="Rango de precio"
                     android:textColor="#43A047"
                     android:textSize="12sp"
                     android:textStyle="bold" />
