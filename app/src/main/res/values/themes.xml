@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme -->
     <style name="Base.Theme.GastroApp" parent="Theme.Material3.DayNight.NoActionBar">
@@ -7,5 +8,19 @@
         <item name="colorOnPrimary">@color/white</item>
     </style>
 
-    <style name="Theme.GastroApp" parent="Base.Theme.GastroApp" />
+    <style name="Theme.GastroApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <item name="colorPrimary">@color/principal_green</item>
+        <item name="colorPrimaryVariant">@color/principal_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/principal_green</item>
+        <item name="colorSecondaryVariant">@color/principal_green</item>
+        <item name="colorOnSecondary">@color/black</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowBackground">@color/white</item>
+    </style>
+
+    <style name="Theme.App.Launcher" parent="Theme.GastroApp">
+        <item name="android:windowBackground">@color/ic_launcher_background</item>
+    </style>
 </resources>

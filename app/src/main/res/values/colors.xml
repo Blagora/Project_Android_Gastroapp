@@ -9,4 +9,8 @@
     <color name="principal_green_transparent">#7dcea0</color>
     <color name="transparent">#76FFFFFF</color>
     <color name="secondary_text">#757575</color>
+    
+    <!-- Colores para iconos adaptativos -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="ic_launcher_background_dark">#1C1C1C</color>
 </resources>

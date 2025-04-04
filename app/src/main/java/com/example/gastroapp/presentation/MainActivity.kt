@@ -31,11 +31,11 @@ class MainActivity : AppCompatActivity() {
         // Configurar la barra de acción con la navegación
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.homeFragment,
-                R.id.restaurantsFragment,
-                R.id.eventsFragment,
-                R.id.reservationsFragment,
-                R.id.profileFragment
+                R.id.navigation_home,
+                R.id.navigation_restaurants,
+                R.id.navigation_events,
+                R.id.navigation_reservations,
+                R.id.navigation_profile
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)

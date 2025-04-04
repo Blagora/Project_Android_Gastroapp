@@ -3,34 +3,34 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/navigation_home">
 
     <fragment
-        android:id="@+id/homeFragment"
+        android:id="@+id/navigation_home"
         android:name="com.example.gastroapp.presentation.home.HomeFragment"
         android:label="Inicio"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/restaurantsFragment"
+        android:id="@+id/navigation_restaurants"
         android:name="com.example.gastroapp.presentation.restaurants.RestaurantsFragment"
         android:label="Restaurantes"
         tools:layout="@layout/fragment_restaurants" />
 
     <fragment
-        android:id="@+id/eventsFragment"
-        android:name="com.example.gastroapp.presentation.events.EventsFragment"
-        android:label="Eventos"
-        tools:layout="@layout/fragment_events" />
-
-    <fragment
-        android:id="@+id/reservationsFragment"
+        android:id="@+id/navigation_reservations"
         android:name="com.example.gastroapp.presentation.reservations.ReservationsFragment"
         android:label="Reservas"
         tools:layout="@layout/fragment_reservations" />
 
     <fragment
-        android:id="@+id/profileFragment"
+        android:id="@+id/navigation_events"
+        android:name="com.example.gastroapp.presentation.events.EventsFragment"
+        android:label="Eventos"
+        tools:layout="@layout/fragment_events" />
+
+    <fragment
+        android:id="@+id/navigation_profile"
         android:name="com.example.gastroapp.presentation.profile.ProfileFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_profile" />

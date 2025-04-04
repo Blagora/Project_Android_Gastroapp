@@ -6,12 +6,12 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fondo_login"
         android:scaleType="centerCrop"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/fondo_login"
+        android:contentDescription="@string/app_name" />
 
     <View
         android:id="@+id/greenOverlay"
