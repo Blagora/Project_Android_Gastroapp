@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -6,18 +7,18 @@
     tools:context=".MainActivity">
 
     <ImageView
-        android:id="@+id/backgroundImage"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:src="@drawable/fondo_login"
         android:scaleType="centerCrop"
-        android:adjustViewBounds="true" />
+        android:adjustViewBounds="true"
+        android:src="@drawable/fondo_login"
+        android:contentDescription="@string/app_name" />
 
     <View
         android:id="@+id/greenOverlay"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#A6188f13" />
+        android:background="@color/overlay_green" />
 
     <ImageView
         android:id="@+id/ivLogo"
@@ -31,6 +32,7 @@
 
     <TextView
         android:id="@+id/tvWelcome"
+        style="@style/TextAppearance.GastroApp.Headline1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
@@ -45,12 +47,12 @@
 
     <TextView
         android:id="@+id/tvSignIn"
+        style="@style/TextAppearance.GastroApp.Subtitle1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:text="INGRESE A SU CUENTA"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvWelcome" />
@@ -62,7 +64,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_corner_white"
+        android:background="@drawable/rounded_input_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="16dp"
@@ -87,16 +89,14 @@
 
         <EditText
             android:id="@+id/etNames"
+            style="@style/Widget.GastroApp.EditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:hint="Nombres y apellidos"
-            android:inputType="textPersonName"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/hint_text"
-            android:textSize="16sp" />
+            android:inputType="textPersonName" />
     </LinearLayout>
 
     <LinearLayout
@@ -106,7 +106,7 @@
         android:layout_marginStart="32dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/rounded_corner_white"
+        android:background="@drawable/rounded_input_background"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         android:paddingStart="16dp"
@@ -120,7 +120,7 @@
         <ImageView
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:src="@drawable/ic_lock_white"
+            android:src="@drawable/ic_lock"
             app:tint="@color/hint_text" />
 
         <View
@@ -131,54 +131,51 @@
 
         <EditText
             android:id="@+id/etPassword"
+            style="@style/Widget.GastroApp.EditText"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_weight="1"
             android:background="@android:color/transparent"
             android:hint="Contraseña"
-            android:inputType="textPassword"
-            android:textColor="@android:color/black"
-            android:textColorHint="@color/hint_text"
-            android:textSize="16sp" />
+            android:inputType="textPassword" />
     </LinearLayout>
 
     <TextView
         android:id="@+id/tvRegister"
+        style="@style/TextAppearance.GastroApp.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="24dp"
         android:text="Registrese"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llInputPassword" />
 
     <TextView
         android:id="@+id/tvForgotPassword"
+        style="@style/TextAppearance.GastroApp.Body1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:layout_marginEnd="32dp"
         android:text="¿ Olvidó su clave ?"
         android:textColor="@android:color/white"
-        android:textSize="16sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/llInputPassword" />
 
     <Button
         android:id="@+id/btnLogin"
+        style="@style/Widget.GastroApp.Button"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
         android:layout_marginTop="48dp"
         android:layout_marginEnd="32dp"
-        android:background="@drawable/button_background_green"
+        android:background="@drawable/rounded_button_background"
         android:text="INGRESAR"
         android:textColor="@android:color/white"
-        android:textSize="18sp"
-        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tvRegister" />

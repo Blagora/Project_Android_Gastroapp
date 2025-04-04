@@ -1,12 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme -->
+    <!-- Base application theme para modo oscuro -->
     <style name="Base.Theme.GastroApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
-        <item name="colorPrimary">@color/green</item> <!-- Color que quieras -->
-        <item name="colorPrimaryContainer">@color/green</item>
+        <item name="android:forceDarkAllowed" tools:targetApi="29">true</item>
+        <item name="colorPrimary">@color/principal_green_light</item>
+        <item name="colorPrimaryVariant">@color/principal_green</item>
+        <item name="colorPrimaryContainer">@color/principal_green_dark</item>
         <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/principal_green_light</item>
+        <item name="colorSecondaryVariant">@color/secondary_green</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        <item name="colorOnBackground">@color/text_primary</item>
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorError">@color/error_color</item>
+        
+        <!-- Colores de estado de sistema -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowLightNavigationBar" tools:targetApi="27">false</item>
+        
+        <!-- Los estilos de texto están definidos en el tema base y referenciados correctamente -->
     </style>
 
-    <style name="Theme.GastroApp" parent="Base.Theme.GastroApp" />
+    <style name="Theme.GastroApp" parent="Base.Theme.GastroApp">
+        <!-- Aquí se pueden agregar personalizaciones adicionales específicas del tema oscuro -->
+        <item name="android:windowBackground">@color/background</item>
+    </style>
+    
+    <style name="Theme.App.Launcher" parent="Theme.GastroApp">
+        <item name="android:windowBackground">@color/ic_launcher_background_dark</item>
+    </style>
+    
+    <!-- Estilos para los componentes de UI comunes -->
+    <style name="Widget.GastroApp.Button" parent="Widget.MaterialComponents.Button">
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/principal_green</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+    
+    <style name="Widget.GastroApp.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:textColor">@color/principal_green_light</item>
+        <item name="strokeColor">@color/principal_green_light</item>
+        <item name="cornerRadius">8dp</item>
+    </style>
+    
+    <style name="Widget.GastroApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+        <item name="boxStrokeColor">@color/principal_green</item>
+        <item name="hintTextColor">@color/principal_green_light</item>
+    </style>
 </resources>
 

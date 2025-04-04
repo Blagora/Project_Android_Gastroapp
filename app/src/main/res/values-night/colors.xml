@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- No es necesario redefinir todos los colores, solo aquellos que necesiten 
+         ser referenciados específicamente en modo oscuro -->
+    <color name="hint_text">@color/hint_text_dark</color>
+    <color name="text_primary">@color/text_primary_dark</color>
+    <color name="text_secondary">@color/text_secondary_dark</color>
+    <color name="surface">@color/surface_dark</color>
+    <color name="surface_variant">@color/surface_variant_dark</color>
+    <color name="background">@color/surface_dark</color>
+    <color name="overlay_green">@color/overlay_green_dark</color>
+    <color name="semi_transparent">@color/semi_transparent_dark</color>
+    <color name="error_color">@color/error_dark</color>
+
+    <!-- Colores para eventos en modo oscuro -->
+    <color name="event_card_background">@color/event_card_dark_green</color>
+    <color name="event_title_text">@color/principal_green_light</color>
+    <color name="event_button_text">@color/white</color>
+</resources> 
