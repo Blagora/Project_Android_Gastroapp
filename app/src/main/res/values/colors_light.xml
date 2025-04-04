@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Referencias para el modo claro -->
+    <color name="hint_text">@color/hint_text_light</color>
+    <color name="text_primary">@color/text_primary_light</color>
+    <color name="text_secondary">@color/text_secondary_light</color>
+    <color name="surface">@color/surface_light</color>
+    <color name="surface_variant">@color/surface_variant_light</color>
+    <color name="background">@color/surface_light</color>
+    <color name="overlay_green">@color/overlay_green_light</color>
+    <color name="semi_transparent">@color/semi_transparent_light</color>
+    <color name="error_color">@color/error</color>
+</resources> 

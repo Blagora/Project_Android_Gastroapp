@@ -1,14 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Colores base -->
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="gray">#ababab</color>
-    <color name="hint_text">#BDBDBD</color>
+    <color name="gray">#ABABAB</color>
+    <color name="dark_gray">#303030</color>
+    <color name="light_gray">#F5F5F5</color>
     <color name="green">#2E7D32</color>
-    <color name="principal_green">#188f13</color>
-    <color name="principal_green_transparent">#7dcea0</color>
-    <color name="transparent">#76FFFFFF</color>
     <color name="secondary_text">#757575</color>
+    
+    <!-- Colores de marca -->
+    <color name="principal_green">#188F13</color>
+    <color name="principal_green_light">#4ABF46</color>
+    <color name="principal_green_dark">#0E5D0B</color>
+    <color name="principal_green_transparent">#7D188F13</color>
+    <color name="secondary_green">#2E7D32</color>
+    
+    <!-- Colores de texto -->
+    <color name="text_primary_light">#212121</color>
+    <color name="text_secondary_light">#757575</color>
+    <color name="text_primary_dark">#F5F5F5</color>
+    <color name="text_secondary_dark">#B3B3B3</color>
+    <color name="hint_text_light">#BDBDBD</color>
+    <color name="hint_text_dark">#808080</color>
+    
+    <!-- Colores de superficie -->
+    <color name="surface_light">#FFFFFF</color>
+    <color name="surface_dark">#121212</color>
+    <color name="surface_variant_light">#F5F5F5</color>
+    <color name="surface_variant_dark">#1E1E1E</color>
+    
+    <!-- Colores para estados -->
+    <color name="error">#B00020</color>
+    <color name="error_dark">#CF6679</color>
+    <color name="success">#4CAF50</color>
+    <color name="warning">#FFC107</color>
+    
+    <!-- Transparencias y overlays -->
+    <color name="transparent">#00FFFFFF</color>
+    <color name="semi_transparent_light">#76FFFFFF</color>
+    <color name="semi_transparent_dark">#76000000</color>
+    <color name="overlay_green_light">#A6188F13</color>
+    <color name="overlay_green_dark">#B3188F13</color>
     
     <!-- Colores para iconos adaptativos -->
     <color name="ic_launcher_background">#FFFFFF</color>
