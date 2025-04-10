@@ -1,0 +1,156 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <!-- Imagen circular -->
+        <ImageView
+            android:id="@+id/img_restaurante"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_gravity="center"
+            android:src="@drawable/perfil_vacio"
+            android:scaleType="centerCrop"
+            android:padding="2dp" />
+
+        <TextView
+            android:id="@+id/txt_nombre"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pizza a la Nicol"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:paddingTop="8dp"
+            android:textColor="#2F6633" />
+
+        <TextView
+            android:id="@+id/txt_categoria"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pizzas / Hamburguesas"
+            android:layout_gravity="center"
+            android:textSize="14sp"
+            android:textColor="#666" />
+
+        <!-- Rating + Favorito -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_gravity="center"
+            android:gravity="center"
+            android:paddingTop="4dp">
+
+            <RatingBar
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:numStars="5"
+                android:rating="4.1"
+                android:stepSize="0.5"
+                android:isIndicator="true"
+                android:layout_marginEnd="8dp" />
+
+            <Button
+                android:id="@+id/btn_favorito"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Favorito"
+                android:backgroundTint="#4CAF50"
+                android:textColor="#FFF" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:layout_marginTop="16dp"
+            android:weightSum="3">
+
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:textSize="13sp"
+                android:text="Información"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Menú"
+                android:layout_marginStart="2dp"
+                android:layout_marginEnd="4dp" />
+
+            <Button
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Reservar"
+                android:layout_marginStart="4dp" />
+        </LinearLayout>
+
+
+        <TextView
+            android:id="@+id/restaurantDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="“Pizzas a la Nicol” es un restaurante familiar que ofrece pizzas artesanales con ingredientes frescos y combinaciones únicas, en un ambiente acogedor y relajado."
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp"
+            android:paddingStart="4dp"
+            android:paddingEnd="4dp"
+            android:textAlignment="center"
+            android:textSize="14sp"
+            android:textColor="#444" />
+
+        <TextView
+            android:id="@+id/restaurantAdress"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Cl 123 # 45 - 67 Barrio Los Pinos, Bogotá"
+            android:paddingTop="8dp"
+            android:paddingBottom="8dp"
+            android:textAlignment="center"
+            android:textSize="17sp"
+            android:textColor="#444" />
+
+        <!-- Galería -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="3"
+            android:rowCount="2"
+            android:padding="11dp"
+            android:layout_marginTop="8dp"
+            android:alignmentMode="alignMargins"
+            android:useDefaultMargins="true">
+
+            <!-- Imágenes -->
+            <ImageView android:layout_width="110dp" android:layout_height="100dp" android:src="@drawable/perfil_vacio" />
+            <ImageView android:layout_width="110dp" android:layout_height="100dp" android:src="@drawable/perfil_vacio" />
+            <ImageView android:layout_width="110dp" android:layout_height="100dp" android:src="@drawable/perfil_vacio" />
+            <ImageView android:layout_width="110dp" android:layout_height="100dp" android:src="@drawable/perfil_vacio" />
+            <ImageView android:layout_width="110dp" android:layout_height="100dp" android:src="@drawable/perfil_vacio" />
+            <ImageView android:layout_width="110dp" android:layout_height="100dp" android:src="@drawable/perfil_vacio" />
+        </GridLayout>
+
+        <!-- Mapa  -->
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="200dp"
+            android:src="@drawable/mapa_fake"
+            android:scaleType="centerCrop"
+            android:layout_marginTop="16dp" />
+
+    </LinearLayout>
+</ScrollView>

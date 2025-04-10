@@ -140,4 +140,4 @@
         app:layout_constraintStart_toStartOf="@id/inputContainer"
         app:layout_constraintTop_toBottomOf="@id/linksContainer" />
 
-</androidx.constraintlayout.widget.ConstraintLayout> 
+</androidx.constraintlayout.widget.ConstraintLayout>

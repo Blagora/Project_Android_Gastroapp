@@ -1,175 +1,179 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorSurface">
+    android:fillViewport="true">
 
-    <com.google.android.material.appbar.AppBarLayout
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorSurface"
-        app:elevation="0dp">
+        android:layout_height="match_parent"
+        android:background="?attr/colorSurface">
 
-        <LinearLayout
+        <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:padding="16dp">
+            android:background="?attr/colorSurface"
+            app:elevation="0dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="center_vertical">
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/profileIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:src="@drawable/ic_person"
-                    app:tint="@color/principal_green"
-                    app:shapeAppearanceOverlay="@style/CircleImageView"
-                    android:background="@color/principal_green_transparent"
-                    android:padding="6dp"/>
-
-                <TextView
-                    android:id="@+id/locationText"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:text="CR 10 # 10 - 10 Bogotá D.C"
-                    android:textColor="@color/text_primary"
-                    android:background="@color/surface_variant"
-                    android:padding="8dp"
-                    android:textAlignment="center"
-                    android:textSize="14sp"/>
-
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/notificationIcon"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_marginStart="8dp"
-                    android:src="@drawable/ic_notifications"
-                    app:tint="@color/principal_green"
-                    app:shapeAppearanceOverlay="@style/CircleImageView"
-                    android:background="@color/semi_transparent_light"
-                    android:padding="6dp"/>
-            </LinearLayout>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="EVENTOS"
-                android:textSize="36sp"
-                android:textStyle="bold"
-                android:textColor="@color/principal_green"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.cardview.widget.CardView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                app:cardElevation="0dp"
-                app:cardCornerRadius="24dp">
+                android:orientation="vertical"
+                android:padding="16dp">
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="52dp"
-                    android:orientation="horizontal"
-                    android:gravity="center_vertical"
-                    android:background="@drawable/event_search_background">
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical">
 
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_search"
-                        android:layout_marginStart="16dp"
-                        app:tint="@color/white"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/profileIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/ic_person"
+                        app:tint="@color/principal_green"
+                        app:shapeAppearanceOverlay="@style/CircleImageView"
+                        android:background="@color/principal_green_transparent"
+                        android:padding="6dp"/>
 
                     <TextView
-                        android:id="@+id/searchText"
+                        android:id="@+id/locationText"
                         android:layout_width="0dp"
-                        android:layout_height="match_parent"
+                        android:layout_height="wrap_content"
                         android:layout_weight="1"
-                        android:gravity="center_vertical"
-                        android:text="Buscar"
-                        android:textColor="@color/white"
-                        android:textSize="18sp"
-                        android:layout_marginStart="16dp"/>
+                        android:layout_marginStart="8dp"
+                        android:text="CR 10 # 10 - 10 Bogotá D.C"
+                        android:textColor="@color/text_primary"
+                        android:background="@color/surface_variant"
+                        android:padding="8dp"
+                        android:textAlignment="center"
+                        android:textSize="14sp"/>
 
-                    <ImageView
-                        android:id="@+id/menuIcon"
-                        android:layout_width="24dp"
-                        android:layout_height="24dp"
-                        android:src="@drawable/ic_filter"
-                        android:layout_marginEnd="16dp"
-                        app:tint="@color/white"/>
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/notificationIcon"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:layout_marginStart="8dp"
+                        android:src="@drawable/ic_notifications"
+                        app:tint="@color/principal_green"
+                        app:shapeAppearanceOverlay="@style/CircleImageView"
+                        android:background="@color/semi_transparent_light"
+                        android:padding="6dp"/>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </LinearLayout>
-    </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.core.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="EVENTOS"
+                    android:textSize="36sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/principal_green"
+                    android:layout_marginTop="16dp"/>
 
-        <LinearLayout
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    app:cardElevation="0dp"
+                    app:cardCornerRadius="24dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="52dp"
+                        android:orientation="horizontal"
+                        android:gravity="center_vertical"
+                        android:background="@drawable/event_search_background">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_search"
+                            android:layout_marginStart="16dp"
+                            app:tint="@color/white"/>
+
+                        <TextView
+                            android:id="@+id/searchText"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center_vertical"
+                            android:text="Buscar"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:layout_marginStart="16dp"/>
+
+                        <ImageView
+                            android:id="@+id/menuIcon"
+                            android:layout_width="24dp"
+                            android:layout_height="24dp"
+                            android:src="@drawable/ic_filter"
+                            android:layout_marginEnd="16dp"
+                            app:tint="@color/white"/>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+            </LinearLayout>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingHorizontal="16dp"
-            android:paddingBottom="16dp">
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="En curso"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/principal_green"
-                android:layout_marginTop="16dp"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/currentEventsRecyclerView"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:listitem="@layout/item_event"
-                tools:itemCount="2"/>
+                android:orientation="vertical"
+                android:paddingHorizontal="16dp"
+                android:paddingBottom="16dp">
 
-            <TextView
-                android:id="@+id/txtViewMore1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ver mas"
-                android:drawableEnd="@drawable/ic_arrow_forward"
-                android:drawablePadding="4dp"
-                android:textColor="@color/text_primary"
-                android:layout_gravity="end"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="En curso"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/principal_green"
+                    android:layout_marginTop="16dp"/>
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Próximamente"
-                android:textSize="28sp"
-                android:textStyle="bold"
-                android:textColor="@color/principal_green"
-                android:layout_marginTop="24dp"/>
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/currentEventsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_event" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/upcomingEventsRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                tools:listitem="@layout/item_event"
-                tools:itemCount="2"/>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+                <TextView
+                    android:id="@+id/txtViewMore1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ver mas"
+                    android:drawableEnd="@drawable/ic_arrow_forward"
+                    android:drawablePadding="4dp"
+                    android:textColor="@color/text_primary"
+                    android:layout_gravity="end"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"/>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Próximamente"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/principal_green"
+                    android:layout_marginTop="24dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/upcomingEventsRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    tools:listitem="@layout/item_event"
+                    tools:itemCount="2"/>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</ScrollView>
