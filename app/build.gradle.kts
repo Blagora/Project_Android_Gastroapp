@@ -2,7 +2,7 @@ plugins {
     id("com.android.application")
     id("com.google.dagger.hilt.android")
     id("com.google.gms.google-services")
-    kotlin("android") version "2.1.0"
+    kotlin("android") version "2.1.20"
     kotlin("kapt") version "2.1.0"
 }
 
