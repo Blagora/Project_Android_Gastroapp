@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("com.google.dagger.hilt.android")
-    kotlin("android")
-    kotlin("kapt")
+    id("com.google.gms.google-services")
+    kotlin("android") version "2.1.0"
+    kotlin("kapt") version "2.1.0"
 }
 
 android {
@@ -50,6 +51,10 @@ android {
         disable += "MissingConstraints"
         disable += "HardcodedText"
     }
+
+    kapt {
+        correctErrorTypes = true
+    }
 }
 
 dependencies {
@@ -62,7 +67,7 @@ dependencies {
 
     // ViewModel & LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.8.7")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
 
     // Coroutines
@@ -96,12 +101,17 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    // Otros libraries
     implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
+    implementation("androidx.core:core-ktx:1.16.0")
+    implementation("androidx.appcompat:appcompat:1.7.0")
 
     // App Elements
-
     implementation("androidx.cardview:cardview:1.0.0")
 
+    // Google Firebase
+    implementation(platform("com.google.firebase:firebase-bom:33.12.0"))
+    implementation("com.google.firebase:firebase-analytics")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
 }
