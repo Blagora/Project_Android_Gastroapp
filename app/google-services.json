@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "531039337131",
+    "project_id": "gastroapp-01",
+    "storage_bucket": "gastroapp-01.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:531039337131:android:173fc2bc9fd29a557615ee",
+        "android_client_info": {
+          "package_name": "com.example.gastroapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "531039337131-95qsmum2opmhlq6lan9gsj33h5campeg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.gastroapp",
+            "certificate_hash": "50167d9bc369ccca6f3a6a1f176f34ef1292e6f2"
+          }
+        },
+        {
+          "client_id": "531039337131-3rgfq5pdt7bqvdpichrpkb987gs8hkmr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBJrr-wT_MU8bPek7lAD9dLZVVbSjnFYCU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "531039337131-3rgfq5pdt7bqvdpichrpkb987gs8hkmr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
