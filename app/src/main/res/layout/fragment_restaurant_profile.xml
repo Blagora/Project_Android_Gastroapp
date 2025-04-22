@@ -148,7 +148,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="200dp"
-            android:src="@drawable/perfil_vacio"
+            android:src="@drawable/mapa_fake"
             android:scaleType="centerCrop"
             android:layout_marginTop="16dp" />
 
