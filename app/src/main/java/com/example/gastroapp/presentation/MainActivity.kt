@@ -1,6 +1,7 @@
 package com.example.gastroapp.presentation
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
@@ -9,7 +10,11 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.gastroapp.R
 import com.example.gastroapp.databinding.ActivityMainBinding
+import com.google.firebase.FirebaseApp
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 import dagger.hilt.android.AndroidEntryPoint
+
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -42,5 +47,21 @@ class MainActivity : AppCompatActivity() {
 
         // Configurar el BottomNavigationView con la navegación
         binding.bottomNavigationView.setupWithNavController(navController)
+
+        FirebaseApp.initializeApp(this)
+
+        val db = Firebase.firestore
+
+        db.collection("restaurantes")
+            .get()
+            .addOnSuccessListener { result ->
+                Log.d("FirestoreTest", "Documentos encontrados: ${result.size()}")
+                for (document in result) {
+                    Log.d("FirestoreTest", "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.e("FirestoreTest", "Error al leer documentos", exception)
+            }
     }
 } 

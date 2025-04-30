@@ -1,6 +1,7 @@
 plugins {
     id("com.android.application")
     id("com.google.dagger.hilt.android")
+    id("com.google.gms.google-services")
     kotlin("android")
     kotlin("kapt")
 }
@@ -105,5 +106,7 @@ dependencies {
     // App Elements
 
     implementation("androidx.cardview:cardview:1.0.0")
+
+    implementation("com.google.firebase:firebase-firestore:25.1.4")
 
 }
