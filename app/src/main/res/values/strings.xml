@@ -1,3 +1,6 @@
 <resources>
+    <string name="profile_image">Imagen de perfil</string>
+    <string name="change_image">Cambiar imagen</string>
+    <string name="logout">Cerrar sesión</string>
     <string name="app_name">GastroApp</string>
 </resources>
