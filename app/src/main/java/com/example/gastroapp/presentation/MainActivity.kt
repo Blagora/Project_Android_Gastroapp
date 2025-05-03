@@ -13,6 +13,8 @@ import com.example.gastroapp.databinding.ActivityMainBinding
 import com.google.firebase.FirebaseApp
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
+import android.content.Intent
+import com.example.gastroapp.ui.ListaRestaurantesActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 

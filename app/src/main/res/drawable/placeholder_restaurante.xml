@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="400dp"
+    android:height="300dp"
+    android:viewportWidth="400"
+    android:viewportHeight="300">
+
+    <!-- Fondo gris claro -->
+    <path
+        android:fillColor="#f0f0f0"
+        android:pathData="M0,0h400v300h-400z" />
+
+    <!-- Grupo central (icono de imagen) -->
+    <group
+        android:translateX="200"
+        android:translateY="150">
+
+        <!-- Cuadrado gris medio -->
+        <path
+            android:fillColor="#e0e0e0"
+            android:pathData="M-50,-50h100v100h-100z" />
+
+        <!-- Grupo para las "montañas" (desplazado un poco hacia arriba) -->
+        <group
+            android:translateY="-10">
+            <!-- Montaña izquierda -->
+            <path
+                android:fillColor="#a0a0a0"
+                android:pathData="M-25,-15 L-10,15 L-25,15 Z" />
+            <!-- Montaña centro -->
+            <path
+                android:fillColor="#a0a0a0"
+                android:pathData="M-5,-15 L10,15 L-5,15 Z" />
+            <!-- Montaña derecha -->
+            <path
+                android:fillColor="#a0a0a0"
+                android:pathData="M15,-15 L30,15 L15,15 Z" />
+        </group> <!-- Fin grupo montañas -->
+
+    </group> <!-- Fin grupo central -->
+
+</vector>
