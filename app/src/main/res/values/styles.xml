@@ -10,23 +10,31 @@
         <item name="android:textColor">@color/white</item>
         <item name="backgroundTint">@color/principal_green</item>
         <item name="cornerRadius">8dp</item>
+        <item name="android:stateListAnimator">@null</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
     
     <style name="Widget.GastroApp.Button.OutlinedButton" parent="Widget.MaterialComponents.Button.OutlinedButton">
         <item name="android:textColor">@color/principal_green</item>
         <item name="strokeColor">@color/principal_green</item>
         <item name="cornerRadius">8dp</item>
+        <item name="android:stateListAnimator">@null</item>
     </style>
     
     <style name="Widget.GastroApp.TextInputLayout" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox">
         <item name="boxStrokeColor">@color/principal_green</item>
         <item name="hintTextColor">@color/principal_green</item>
+        <item name="android:textColorHint">@color/text_hint</item>
+        <item name="errorTextColor">@color/error_color</item>
     </style>
     
     <style name="Widget.GastroApp.CardView" parent="Widget.MaterialComponents.CardView">
         <item name="cardBackgroundColor">@color/surface</item>
         <item name="cardElevation">2dp</item>
         <item name="cardCornerRadius">8dp</item>
+        <item name="android:clickable">true</item>
+        <item name="android:focusable">true</item>
     </style>
     
     <style name="Widget.GastroApp.BottomNavigation" parent="Widget.MaterialComponents.BottomNavigationView">
@@ -41,6 +49,7 @@
         <item name="android:background">@color/surface</item>
         <item name="titleTextColor">@color/principal_green</item>
         <item name="subtitleTextColor">@color/text_secondary</item>
+        <item name="android:elevation">4dp</item>
     </style>
     
     <style name="Widget.GastroApp.EditText" parent="Widget.MaterialComponents.TextInputEditText.OutlinedBox">
@@ -49,9 +58,11 @@
     </style>
     
     <style name="Widget.GastroApp.SearchView" parent="Widget.AppCompat.SearchView">
-        <item name="android:textColorHint">@color/hint_text</item>
+        <item name="android:textColorHint">@color/text_hint</item>
         <item name="android:textColor">@color/text_primary</item>
-        <item name="android:background">@drawable/search_background</item>
+        <item name="android:background">@color/surface_variant</item>
+        <item name="queryBackground">@android:color/transparent</item>
+        <item name="submitBackground">@android:color/transparent</item>
     </style>
     
     <style name="Widget.GastroApp.TextView.Title" parent="TextAppearance.GastroApp.Headline1">

@@ -2,7 +2,6 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme -->
     <style name="Base.Theme.GastroApp" parent="Theme.Material3.DayNight.NoActionBar">
-        <item name="android:forceDarkAllowed" tools:targetApi="29">false</item>
         <item name="colorPrimary">@color/principal_green</item>
         <item name="colorPrimaryVariant">@color/principal_green_dark</item>
         <item name="colorPrimaryContainer">@color/principal_green_light</item>
@@ -14,13 +13,12 @@
         <item name="colorOnSurface">@color/text_primary</item>
         <item name="colorOnBackground">@color/text_primary</item>
         <item name="android:colorBackground">@color/background</item>
-        <item name="colorError">@color/error_color</item>
         
-        <!-- Colores de estado de sistema -->
+        <!-- Estados de la barra del sistema -->
         <item name="android:statusBarColor">@android:color/transparent</item>
         <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowLightStatusBar">true</item>
-        <item name="android:windowLightNavigationBar" tools:targetApi="27">true</item>
+        <item name="android:windowLightNavigationBar">true</item>
         
         <!-- Estilos de texto -->
         <item name="textAppearanceHeadline1">@style/TextAppearance.GastroApp.Headline1</item>

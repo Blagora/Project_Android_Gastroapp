@@ -13,8 +13,11 @@
     <color name="principal_green_dark">#388E3C</color>
     <color name="principal_green_transparent">#334CAF50</color>
     <color name="secondary_green">#2E7D32</color>
-    <color name="primary_color">#006C3B</color>
-    <color name="secondary_color">#4CAF50</color>
+    <color name="green">@color/principal_green</color>
+    
+    <!-- Colores primarios y secundarios -->
+    <color name="primary_color">@color/principal_green</color>
+    <color name="secondary_color">@color/secondary_green</color>
     
     <!-- Colores de error y estado -->
     <color name="error_color">#B00020</color>
@@ -30,28 +33,26 @@
     <!-- Colores de texto -->
     <color name="text_primary">#000000</color>
     <color name="text_secondary">#757575</color>
+    <color name="secondary_text">@color/text_secondary</color>
     <color name="text_hint">#BDBDBD</color>
+    <color name="hint_text">@color/text_hint</color>
     <color name="text_primary_dark">#FFFFFF</color>
     <color name="text_secondary_dark">#B3B3B3</color>
     <color name="hint_text_dark">#808080</color>
-    
-    <!-- Colores adicionales -->
-    <color name="event_card_dark_green">#1C3A1D</color>
-    <color name="overlay_green_dark">#B3188F13</color>
-    <color name="semi_transparent_dark">#76000000</color>
-    <color name="ic_launcher_background_dark">#1C1C1C</color>
-    <color name="ic_launcher_background">#FFFFFF</color>
     
     <!-- Colores de eventos -->
     <color name="event_search_gradient_start">#1565C0</color>
     <color name="event_search_gradient_end">#4CAF50</color>
     <color name="event_button_background">#8BC34A</color>
-    <color name="green">#2E7D32</color>
+    <color name="event_card_dark_green">#1C3A1D</color>
     
     <!-- Colores de transparencia -->
     <color name="transparent">#00FFFFFF</color>
     <color name="semi_transparent_light">#76FFFFFF</color>
+    <color name="semi_transparent_dark">#76000000</color>
+    <color name="overlay_green_dark">#B3188F13</color>
     
-    <!-- Colores de texto adicionales -->
-    <color name="secondary_text">#757575</color>
+    <!-- Colores de launcher -->
+    <color name="ic_launcher_background">#FFFFFF</color>
+    <color name="ic_launcher_background_dark">#1C1C1C</color>
 </resources>
