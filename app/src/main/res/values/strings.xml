@@ -9,4 +9,15 @@
     <string name="email">Correo electrónico</string>
     <string name="phone">Teléfono</string>
     <string name="address">Dirección</string>
+    <string name="descripcion_imagen_evento">Imagen del evento</string>
+    <string name="ver">Ver</string>
+    <string name="imagen_del_restaurante">Imagen del restaurante</string>
+    <string name="reservar">Reservar</string>
+    <string name="fragment_home_label">Inicio</string>
+    <string name="horario_abierto_hoy">Abierto hoy: %1$s</string>
+    <string name="horario_cerrado_hoy">Cerrado hoy: %1$s</string>
+    <string name="anadiendo_restaurantes">Añadiendo restaurantes...</string>
+    <string name="no_hay_restaurantes">No hay restaurantes disponibles</string>
+    <string name="ver_detalles_de">Ver detalles de %1$s</string>
+    <string name="reservar_en">Reservar en %1$s</string>
 </resources>

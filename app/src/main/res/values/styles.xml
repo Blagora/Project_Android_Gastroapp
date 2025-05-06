@@ -99,4 +99,9 @@
         <item name="cornerRadius">8dp</item>
         <item name="backgroundTint">@color/primary_color</item>
     </style>
+
+    <style name="RatingBarTheme" parent="Theme.AppCompat">
+        <item name="colorControlNormal">@android:color/darker_gray</item>
+        <item name="colorControlActivated">@android:color/holo_orange_light</item>
+    </style>
 </resources>
