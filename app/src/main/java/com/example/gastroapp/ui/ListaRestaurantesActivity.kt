@@ -47,19 +47,18 @@ class ListaRestaurantesActivity : AppCompatActivity() {
     private fun setupRecyclerView() {
         // Asegúrate que RestauranteAdapter exista y funcione como esperas
         restauranteAdapter = RestauranteAdapter(
-            this,
-            restaurantes,
-            onItemClick = { restaurante ->
+            // NO pasar 'this' aquí
+            restaurantes, // <--- 1er Argumento: La lista
+            onItemClick = { restaurante -> // <--- 2do Argumento: Lambda Item Click
                 navegarADetallesRestaurante(restaurante)
             },
-            onReservarClick = { restaurante ->
+            onReservarClick = { restaurante -> // <--- 3er Argumento: Lambda Reservar Click
                 navegarAReserva(restaurante)
             }
         )
 
-        // Accede al RecyclerView a través del binding
+        // El resto del código para configurar el RecyclerView está bien aquí
         binding.recyclerViewRestaurantes.apply {
-            // Ahora estas referencias deberían funcionar si el binding es correcto
             layoutManager = LinearLayoutManager(this@ListaRestaurantesActivity)
             adapter = restauranteAdapter
         }

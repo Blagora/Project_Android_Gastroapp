@@ -1,81 +1,87 @@
 <?xml version="1.0" encoding="utf-8"?>
-<com.google.android.material.card.MaterialCardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginVertical="8dp"
-    app:cardCornerRadius="16dp"
-    app:cardElevation="0dp">
+    android:layout_margin="8dp"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp"
+    tools:context=".presentation.events.adapters.EventAdapter"> <!-- Optional: Keep tools:context if you like -->
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="12dp"
-        android:background="@color/event_card_background">
+        android:layout_height="wrap_content">
 
         <ImageView
             android:id="@+id/eventImage"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
+            android:layout_width="match_parent"
+            android:layout_height="180dp"
             android:scaleType="centerCrop"
-            android:src="@drawable/placeholder_event"
-            app:shapeAppearanceOverlay="@style/RoundedImageView"/>
+            android:contentDescription="@string/descripcion_imagen_evento"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@drawable/placeholder_event" />
 
-        <LinearLayout
+        <TextView
+            android:id="@+id/eventTitle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical"
-            android:layout_marginStart="12dp"
-            android:layout_marginEnd="8dp">
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventImage"
+            tools:text="Título del Evento" />
 
-            <TextView
-                android:id="@+id/eventTitle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                android:textColor="@color/event_title_text"
-                tools:text="Burger Máster Bogotá"/>
+        <TextView
+            android:id="@+id/eventDescription"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:ellipsize="end"
+            android:maxLines="3"
+            android:textSize="14sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventTitle"
+            tools:text="Descripción del evento que puede ser un poco larga para ver cómo se ajusta el texto." />
 
-            <TextView
-                android:id="@+id/eventDescription"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="14sp"
-                android:textColor="@color/text_primary"
-                android:maxLines="3"
-                android:ellipsize="end"
-                tools:text="Concurso de hamburguesas del 10 al 17 de octubre de 2024 en la ciudad de Bogotá"/>
-
-            <TextView
-                android:id="@+id/eventPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:textSize="16sp"
-                android:textStyle="bold"
-                android:textColor="@color/principal_green"
-                tools:text="Precio: 18.000 COP"/>
-        </LinearLayout>
+        <TextView
+            android:id="@+id/eventPrice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:textColor="?attr/colorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eventDescription"
+            app:layout_constraintVertical_bias="0.0"
+            tools:text="Precio: 15.00 COP" />
 
         <Button
             android:id="@+id/seeButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="VER"
-            android:layout_gravity="bottom"
-            android:layout_marginBottom="4dp"
-            android:backgroundTint="@color/event_button_background"
-            android:textColor="@color/event_button_text"
-            android:paddingHorizontal="20dp"
-            android:paddingVertical="8dp"
-            android:textSize="14sp"
-            android:textStyle="bold"/>
+            android:layout_marginEnd="16dp"
+            android:text="@string/ver"
+            android:textSize="15sp"
+            android:paddingTop="19sp"
+            app:layout_constraintBottom_toBottomOf="@+id/eventPrice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/eventPrice" />
 
-    </LinearLayout>
-</com.google.android.material.card.MaterialCardView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

@@ -3,4 +3,15 @@
     <string name="change_image">Cambiar imagen</string>
     <string name="logout">Cerrar sesión</string>
     <string name="app_name">GastroApp</string>
+    <string name="descripcion_imagen_evento">Evento</string>
+    <string name="ver">Ver\n</string>
+    <string name="reservar">Reservar</string>
+    <string name="imagen_del_restaurante">imagen_restaurante</string>
+    <string name="horario_abierto_hoy">Abierto hoy: %1$s - %2$s</string>
+    <string name="horario_cerrado_hoy">Cerrado hoy</string>
+    <string name="anadiendo_restaurantes">Añadiendo restaurantes de prueba...</string>
+    <string name="no_hay_restaurantes">No hay restaurantes disponibles</string>
+    <string name="ver_detalles_de">Ver detalles de: %1$s</string>
+    <string name="reservar_en">Reservar en: %1$s</string>
+    <string name="fragment_home_label">Inicio</string>
 </resources>
