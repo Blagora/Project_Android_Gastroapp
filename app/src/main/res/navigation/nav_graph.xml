@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/navigation_home"
         android:name="com.example.gastroapp.presentation.home.HomeFragment"
-        android:label="Inicio"
+        android:label="@string/fragment_home_label"
         tools:layout="@layout/fragment_home" />
 
     <fragment
@@ -34,4 +34,4 @@
         android:name="com.example.gastroapp.presentation.profile.ProfileFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_profile" />
-</navigation> 
+</navigation>

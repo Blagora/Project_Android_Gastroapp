@@ -22,16 +22,15 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(binding.toolbar) // Asegúrate que toolbar existe en activity_main.xml
 
         val navHostFragment = supportFragmentManager
             .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        // Configurar la barra de acción con la navegación
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_home,
+                R.id.navigation_home, // ID de HomeFragment en tu nav_graph
                 R.id.navigation_restaurants,
                 R.id.navigation_events,
                 R.id.navigation_reservations,
@@ -39,8 +38,12 @@ class MainActivity : AppCompatActivity() {
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
-
-        // Configurar el BottomNavigationView con la navegación
         binding.bottomNavigationView.setupWithNavController(navController)
     }
-} 
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+        val navController = navHostFragment.navController
+        return navController.navigateUp() || super.onSupportNavigateUp()
+    }
+}

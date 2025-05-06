@@ -1,8 +1,9 @@
 plugins {
     id("com.android.application")
     id("com.google.dagger.hilt.android")
-    kotlin("android")
-    kotlin("kapt")
+    id("com.google.gms.google-services")
+    id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.kapt")
 }
 
 android {
@@ -57,9 +58,10 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     implementation(libs.material)
+    implementation(libs.androidx.constraintlayout)
+
     implementation("androidx.activity:activity:1.8.2")
     implementation("androidx.activity:activity-ktx:1.8.2")
-    implementation(libs.androidx.constraintlayout)
 
     // ViewModel & LiveData
     implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
@@ -92,18 +94,21 @@ dependencies {
     implementation("com.github.bumptech.glide:glide:4.16.0")
     kapt("com.github.bumptech.glide:compiler:4.16.0")
 
+
+    // App Elements
+    implementation("androidx.cardview:cardview:1.0.0")
+
+    // Material Design
+    implementation ("com.google.android.material:material:1.11.0")
+
+    // Firebase
+    implementation(platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-firestore-ktx")
+    implementation("com.google.firebase:firebase-auth-ktx")
+    implementation("com.google.firebase:firebase-storage-ktx")
+
     // Testing
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
-
-    implementation("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.5.0")
-    implementation("androidx.core:core-ktx:1.12.0")
-    implementation("androidx.appcompat:appcompat:1.6.1")
-    implementation("com.google.android.material:material:1.11.0")
-
-    // App Elements
-
-    implementation("androidx.cardview:cardview:1.0.0")
-
 }
