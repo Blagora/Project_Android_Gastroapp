@@ -20,4 +20,5 @@
     <string name="no_hay_restaurantes">No hay restaurantes disponibles</string>
     <string name="ver_detalles_de">Ver detalles de %1$s</string>
     <string name="reservar_en">Reservar en %1$s</string>
+    <string name="refresh_restaurants">Actualizar lista de restaurantes</string>
 </resources>

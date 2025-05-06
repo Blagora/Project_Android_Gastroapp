@@ -9,6 +9,8 @@ import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.request.RequestOptions
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.gastroapp.R
 import com.example.gastroapp.model.HorarioDia
 import com.example.gastroapp.model.Restaurante
@@ -19,6 +21,13 @@ class RestauranteAdapter(
     private val onItemClick: (Restaurante) -> Unit,
     private val onReservarClick: (Restaurante) -> Unit
 ) : RecyclerView.Adapter<RestauranteAdapter.RestauranteViewHolder>() {
+
+    // Configuración de Glide para reutilización
+    private val requestOptions = RequestOptions()
+        .centerCrop()
+        .placeholder(R.drawable.placeholder_restaurante)
+        .error(R.drawable.placeholder_restaurante)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RestauranteViewHolder {
         val view = LayoutInflater.from(parent.context)
@@ -51,9 +60,8 @@ class RestauranteAdapter(
             if (restaurante.galeriaImagenes.isNotEmpty()) {
                 Glide.with(itemView.context)
                     .load(restaurante.galeriaImagenes[0])
-                    .centerCrop()
-                    .placeholder(R.drawable.placeholder_restaurante)
-                    .error(R.drawable.placeholder_restaurante)
+                    .apply(requestOptions)
+                    .thumbnail(0.25f)
                     .into(imgRestaurante)
             } else {
                 imgRestaurante.setImageResource(R.drawable.placeholder_restaurante)
