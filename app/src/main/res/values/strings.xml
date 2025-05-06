@@ -1,6 +1,12 @@
 <resources>
+    <string name="app_name">GastroApp</string>
     <string name="profile_image">Imagen de perfil</string>
     <string name="change_image">Cambiar imagen</string>
     <string name="logout">Cerrar sesión</string>
-    <string name="app_name">GastroApp</string>
+    <string name="favorites">Favoritos</string>
+    <string name="reviews">Reseñas</string>
+    <string name="reservations">Reservas</string>
+    <string name="email">Correo electrónico</string>
+    <string name="phone">Teléfono</string>
+    <string name="address">Dirección</string>
 </resources>

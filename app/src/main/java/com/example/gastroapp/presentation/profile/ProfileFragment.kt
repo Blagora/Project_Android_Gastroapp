@@ -2,14 +2,17 @@ package com.example.gastroapp.presentation.profile
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.gastroapp.databinding.FragmentProfileBinding
+import com.google.android.material.shape.ShapeAppearanceModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +20,7 @@ class ProfileFragment : Fragment() {
 
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: ProfileViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -30,34 +34,56 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupListeners()
+        observeViewModel()
+        setupProfileImage()
     }
 
     private fun setupListeners() {
-        binding.changeImageButton.setOnClickListener {
-            val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-            startActivityForResult(intent, REQUEST_CODE_PICK_IMAGE)
+        binding.finishButton.setOnClickListener {
+            // TODO: Implementar guardado de cambios
         }
 
-        binding.logoutButton.setOnClickListener {
-            Toast.makeText(requireContext(), "Sesión cerrada", Toast.LENGTH_SHORT).show()
-            // Implementar lógica de cierre de sesión
+        binding.profileImageView.setOnClickListener {
+            openImagePicker()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if (requestCode == REQUEST_CODE_PICK_IMAGE && resultCode == Activity.RESULT_OK) {
-            val selectedImageUri = data?.data
-            binding.profileImageView.setImageURI(selectedImageUri)
+    private fun observeViewModel() {
+        viewModel.userData.observe(viewLifecycleOwner) { userData ->
+            with(binding) {
+                nameText.text = userData.name
+                nameEditText.setText(userData.name)
+                emailEditText.setText(userData.email)
+                phoneEditText.setText(userData.phone)
+                addressEditText.setText(userData.address)
+                locationText.text = userData.address
+            }
         }
+    }
+
+    private fun setupProfileImage() {
+        binding.profileImageView.shapeAppearanceModel = binding.profileImageView
+            .shapeAppearanceModel
+            .toBuilder()
+            .setAllCornerSizes(ShapeAppearanceModel.PILL)
+            .build()
+    }
+
+    private val getContent = registerForActivityResult(ActivityResultContracts.GetContent()) { uri: Uri? ->
+        uri?.let { updateProfileImage(it) }
+    }
+
+    private fun openImagePicker() {
+        getContent.launch("image/*")
+    }
+
+    private fun updateProfileImage(uri: Uri) {
+        binding.profileImageView.setImageURI(uri)
+        viewModel.updateProfileImage(uri.toString())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-    }
-
-    companion object {
-        private const val REQUEST_CODE_PICK_IMAGE = 1001
     }
 }

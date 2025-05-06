@@ -33,9 +33,34 @@
         <item name="textAppearanceCaption">@style/TextAppearance.GastroApp.Caption</item>
     </style>
 
-    <style name="Theme.GastroApp" parent="Base.Theme.GastroApp">
-        <!-- Aquí se pueden agregar personalizaciones adicionales específicas del tema -->
-        <item name="android:windowBackground">@color/background</item>
+    <style name="Theme.GastroApp" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+        <!-- Colores primarios -->
+        <item name="colorPrimary">@color/principal_green</item>
+        <item name="colorPrimaryVariant">@color/principal_green_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        
+        <!-- Colores secundarios -->
+        <item name="colorSecondary">@color/secondary_green</item>
+        <item name="colorSecondaryVariant">@color/secondary_green</item>
+        <item name="colorOnSecondary">@color/white</item>
+        
+        <!-- Colores de superficie -->
+        <item name="android:colorBackground">@color/background</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="colorOnSurface">@color/text_primary</item>
+        
+        <!-- Estado de la barra -->
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowLightStatusBar">true</item>
+        
+        <!-- Configuración de Material Design -->
+        <item name="materialButtonStyle">@style/Widget.GastroApp.Button</item>
+        <item name="textInputStyle">@style/Widget.GastroApp.TextInputLayout</item>
+    </style>
+
+    <style name="Theme.GastroApp.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="Theme.App.Launcher" parent="Theme.GastroApp">
