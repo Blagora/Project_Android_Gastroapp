@@ -8,6 +8,7 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.gastroapp.R
 import com.example.gastroapp.adapter.RestauranteAdapter
@@ -39,7 +40,14 @@ class HomeFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
         setupObservers()
+        setupListeners()
         viewModel.loadRestaurantes()
+    }
+
+    private fun setupListeners() {
+        binding.cardRestaurants.setOnClickListener {
+            findNavController().navigate(R.id.action_navigation_home_to_mapaRestaurantesFragment)
+        }
     }
 
     private fun setupRecyclerView() {

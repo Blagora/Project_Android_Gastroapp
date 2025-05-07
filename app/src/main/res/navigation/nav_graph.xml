@@ -9,7 +9,12 @@
         android:id="@+id/navigation_home"
         android:name="com.example.gastroapp.presentation.home.HomeFragment"
         android:label="@string/fragment_home_label"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home">
+        
+        <action
+            android:id="@+id/action_navigation_home_to_mapaRestaurantesFragment"
+            app:destination="@id/mapaRestaurantesFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_restaurants"
@@ -34,4 +39,10 @@
         android:name="com.example.gastroapp.presentation.profile.ProfileFragment"
         android:label="Perfil"
         tools:layout="@layout/fragment_profile" />
+
+    <fragment
+        android:id="@+id/mapaRestaurantesFragment"
+        android:name="com.example.gastroapp.ui.mapa.MapaRestaurantesFragment"
+        android:label="Restaurantes Cercanos"
+        tools:layout="@layout/fragment_mapa_restaurantes" />
 </navigation>
