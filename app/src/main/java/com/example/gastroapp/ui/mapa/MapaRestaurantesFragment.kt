@@ -21,11 +21,15 @@ import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import org.json.JSONObject
 import org.osmdroid.config.Configuration
+import org.osmdroid.events.MapEventsReceiver
+import org.osmdroid.tileprovider.MapTileProviderBasic
+import org.osmdroid.tileprovider.cachemanager.CacheManager
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
 import org.osmdroid.views.overlay.Marker
+import java.io.File
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -38,6 +42,15 @@ class MapaRestaurantesFragment : Fragment() {
 
     @Inject
     lateinit var overpassService: OverpassService
+
+    companion object {
+        private const val BOGOTA_LAT = 4.6097
+        private const val BOGOTA_LON = -74.0817
+        private const val DEFAULT_ZOOM = 15.0
+    }
+
+    private lateinit var currentLocationMarker: Marker
+    private lateinit var cacheManager: CacheManager
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,14 +69,39 @@ class MapaRestaurantesFragment : Fragment() {
     }
 
     private fun setupMap() {
-        Configuration.getInstance().userAgentValue = requireContext().packageName
+        Configuration.getInstance().apply {
+            userAgentValue = requireContext().packageName
+            osmdroidTileCache = File(requireContext().cacheDir, "tiles")
+            osmdroidBasePath = requireContext().cacheDir
+            // Configurar límites de caché
+            tileFileSystemCacheMaxBytes = 200L * 1024L * 1024L // 200MB de caché
+            tileDownloadThreads = 4 // Hilos para descarga de tiles
+        }
+
         map = binding.map
         map.setTileSource(TileSourceFactory.MAPNIK)
         map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.ALWAYS)
         map.setMultiTouchControls(true)
         
-        val mapController = map.controller
-        mapController.setZoom(15.0)
+        // Centrar el mapa en Bogotá
+        val bogotaPoint = GeoPoint(BOGOTA_LAT, BOGOTA_LON)
+        map.controller.apply {
+            setZoom(DEFAULT_ZOOM)
+            setCenter(bogotaPoint)
+        }
+
+        // Agregar marcador de ubicación actual
+        currentLocationMarker = Marker(map).apply {
+            setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
+            icon = ContextCompat.getDrawable(requireContext(), android.R.drawable.ic_menu_mylocation)
+            title = "Mi ubicación"
+            setVisible(false)
+            map.overlays.add(this)
+        }
+
+        // Configurar rendimiento
+        map.setUseDataConnection(true)
+        map.isTilesScaledToDpi = true
     }
 
     private fun setupLocationClient() {
@@ -101,6 +139,7 @@ class MapaRestaurantesFragment : Fragment() {
         ) {
             fusedLocationClient.lastLocation.addOnSuccessListener { location ->
                 location?.let {
+                    updateCurrentLocationMarker(it.latitude, it.longitude)
                     val geoPoint = GeoPoint(it.latitude, it.longitude)
                     map.controller.animateTo(geoPoint)
                     showConfirmationDialog { confirmed ->
@@ -183,9 +222,18 @@ class MapaRestaurantesFragment : Fragment() {
             .show()
     }
 
+    private fun updateCurrentLocationMarker(latitude: Double, longitude: Double) {
+        val position = GeoPoint(latitude, longitude)
+        currentLocationMarker.position = position
+        currentLocationMarker.setVisible(true)
+        map.invalidate()
+    }
+
     override fun onResume() {
         super.onResume()
         map.onResume()
+        // Forzar la carga de tiles al reanudar
+        map.invalidate()
     }
 
     override fun onPause() {

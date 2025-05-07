@@ -18,10 +18,17 @@ class OverpassService @Inject constructor(
     suspend fun buscarRestaurantes(bbox: String): String = suspendCancellableCoroutine { continuation ->
         val url = "https://overpass-api.de/api/interpreter"
         val query = """
-            [out:json][timeout:25];
+            [out:json][timeout:50];
+            area["name"="Bogotá"]->.bogota;
             (
-              way["amenity"="restaurant"]($bbox);
-              node["amenity"="restaurant"]($bbox);
+              node["amenity"="restaurant"](area.bogota);
+              way["amenity"="restaurant"](area.bogota);
+              node["amenity"="cafe"](area.bogota);
+              way["amenity"="cafe"](area.bogota);
+              node["amenity"="fast_food"](area.bogota);
+              way["amenity"="fast_food"](area.bogota);
+              node["cuisine"](area.bogota);
+              way["cuisine"](area.bogota);
             );
             out body;
             >;
@@ -50,7 +57,7 @@ class OverpassService @Inject constructor(
         }
 
         request.retryPolicy = DefaultRetryPolicy(
-            15000,
+            30000, // Aumentado a 30 segundos
             DefaultRetryPolicy.DEFAULT_MAX_RETRIES,
             DefaultRetryPolicy.DEFAULT_BACKOFF_MULT
         )
