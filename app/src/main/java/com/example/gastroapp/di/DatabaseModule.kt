@@ -28,8 +28,9 @@ object DatabaseModule {
         .addCallback(object : RoomDatabase.Callback() {
             override fun onCreate(db: SupportSQLiteDatabase) {
                 super.onCreate(db)
-                db.execSQL("PRAGMA journal_mode = WAL")
-                db.execSQL("PRAGMA synchronous = NORMAL")
+                // Eliminar configuraciones PRAGMA no recomendadas
+                // db.execSQL("PRAGMA journal_mode = WAL")
+                // db.execSQL("PRAGMA synchronous = NORMAL")
             }
         })
         .fallbackToDestructiveMigration()

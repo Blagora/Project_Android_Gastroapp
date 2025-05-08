@@ -22,4 +22,8 @@
     <string name="reservar_en">Reservar en %1$s</string>
     <string name="refresh_restaurants">Actualizar lista de restaurantes</string>
     <string name="obtener_ubicacion">Obtener ubicación actual</string>
+    <string name="error_network">Error de red. Por favor, inténtalo de nuevo.</string>
+    <string name="searching_restaurants">Buscando restaurantes cercanos...</string>
+    <string name="no_restaurants_found">No se encontraron restaurantes en esta área.</string>
+    <string name="restaurants_found">Se encontraron %1$d restaurantes.</string>
 </resources>
