@@ -10,17 +10,24 @@
         android:name="com.example.gastroapp.presentation.home.HomeFragment"
         android:label="@string/fragment_home_label"
         tools:layout="@layout/fragment_home">
-        
+
         <action
             android:id="@+id/action_navigation_home_to_mapaRestaurantesFragment"
             app:destination="@id/mapaRestaurantesFragment" />
+        <action
+            android:id="@+id/action_navigation_home_to_restaurantProfileFragment"
+            app:destination="@id/restaurantProfileFragment" />
     </fragment>
 
     <fragment
         android:id="@+id/navigation_restaurants"
-        android:name="com.example.gastroapp.presentation.restaurants.RestaurantsFragment"
+        android:name="com.example.gastroapp.ui.ListaRestaurantesFiltradaFragment"
         android:label="Restaurantes"
-        tools:layout="@layout/fragment_restaurants" />
+        tools:layout="@layout/fragment_restaurants" >
+        <action
+            android:id="@+id/action_navigation_restaurants_to_restaurantProfileFragment"
+            app:destination="@id/restaurantProfileFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_reservations"
@@ -45,4 +52,19 @@
         android:name="com.example.gastroapp.ui.mapa.MapaRestaurantesFragment"
         android:label="Restaurantes Cercanos"
         tools:layout="@layout/fragment_mapa_restaurantes" />
+
+    <fragment
+        android:id="@+id/restaurantProfileFragment"
+        android:name="com.example.gastroapp.ui.profile.RestaurantProfileFragment"
+        android:label="{restaurantName}"
+        tools:layout="@layout/fragment_restaurant_profile">
+        <argument
+            android:name="restaurantId"
+            app:argType="string" />
+        <argument
+            android:name="restaurantName"
+            app:argType="string"
+            android:defaultValue="Perfil Restaurante" />
+    </fragment>
+
 </navigation>

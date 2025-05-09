@@ -25,12 +25,10 @@
         android:requestLegacyExternalStorage="true"
         tools:targetApi="34">
 
-        <!-- Agregar meta-data para Play Services -->
         <meta-data
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <!-- Provider para inicializar Play Services -->
         <provider
             android:name="com.google.android.gms.measurement.AppMeasurementContentProvider"
             android:authorities="${applicationId}.google_measurement_service"

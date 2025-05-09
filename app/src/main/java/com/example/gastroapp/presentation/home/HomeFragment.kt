@@ -39,9 +39,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        setupObservers()
-        setupListeners()
-        viewModel.loadRestaurantes()
+        setupListeners() // Llama a esto antes de setupObservers si contiene el FAB que llama a loadRestaurantes
+        setupObservers() // setupObservers ahora llamará a loadRestaurantes internamente
+        viewModel.loadRestaurantes() // Llama para la carga inicial
     }
 
     private fun setupListeners() {
@@ -81,12 +81,21 @@ class HomeFragment : Fragment() {
     }
 
     private fun actualizarRestaurantes(restaurantes: List<Restaurante>) {
+        // Si restauranteAdapter ya fue inicializado, podrías actualizar su lista interna
+        // y llamar a notifyDataSetChanged() o usar DiffUtil.
+        // Por ahora, la recreación es simple y funcionará.
         restauranteAdapter = RestauranteAdapter(
             restaurantes = restaurantes,
             onItemClick = { restaurante -> navegarADetallesRestaurante(restaurante) },
             onReservarClick = { restaurante -> navegarAReserva(restaurante) }
         )
         binding.recyclerViewRestaurantes.adapter = restauranteAdapter
+
+        // Opcional: Mostrar un mensaje si la lista está vacía
+        if (restaurantes.isEmpty() && binding.progressBar.visibility == View.GONE) {
+            // Aquí podrías mostrar un TextView indicando que no hay restaurantes.
+            // Toast.makeText(requireContext(), "No hay restaurantes para mostrar.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun mostrarCargando(mostrar: Boolean) {

@@ -51,6 +51,7 @@
     <color name="semi_transparent_light">#76FFFFFF</color>
     <color name="semi_transparent_dark">#76000000</color>
     <color name="overlay_green_dark">#B3188F13</color>
+    <color name="overlay_green">#B34CAF50</color>
     
     <!-- Colores de launcher -->
     <color name="ic_launcher_background">#FFFFFF</color>

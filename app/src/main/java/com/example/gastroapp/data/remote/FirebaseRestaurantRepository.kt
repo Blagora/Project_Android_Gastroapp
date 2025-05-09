@@ -16,17 +16,16 @@ class FirebaseRestaurantRepository {
         return try {
             Log.d(TAG, "Añadiendo restaurante: ${restaurant.nombre}")
 
-            // Convertir explícitamente a un mapa para evitar problemas de serialización
             val restaurantMap = mapOf(
                 "nombre" to restaurant.nombre,
                 "descripcion" to restaurant.descripcion,
                 "calificacionPromedio" to restaurant.calificacionPromedio,
                 "galeriaImagenes" to restaurant.galeriaImagenes,
-                "horario" to convertHorarioToMap(restaurant.horario),
+                "horario" to convertHorarioToMap(restaurant.horario), // Ya usa la función corregida
                 "ubicacion" to restaurant.ubicacion
+                // El ID se generará automáticamente por Firestore si lo usas
             )
-
-            // Usar add en lugar de document().set() para generar un ID automático
+            // Para generar ID automático y no preocuparte por el campo "id" en el modelo al escribir:
             val docRef = restaurantesCollection.add(restaurantMap).await()
             Log.d(TAG, "Restaurante añadido exitosamente con ID: ${docRef.id}")
             true
@@ -36,79 +35,38 @@ class FirebaseRestaurantRepository {
         }
     }
 
-    // Convertir el mapa de horarios a un formato que Firestore pueda guardar fácilmente
-    private fun convertHorarioToMap(horario: Map<String, HorarioDia>): Map<String, Map<String, String>> {
+    private fun convertHorarioToMap(horario: Map<String, HorarioDia>): Map<String, Map<String, Any>> { // Any para incluir Int
         return horario.mapValues { (_, horarioDia) ->
             mapOf(
-                "horaApertura" to horarioDia.inicio,
-                "horaCierre" to horarioDia.fin
+                "inicio" to horarioDia.inicio,
+                "fin" to horarioDia.fin,
+                "maxReservas" to horarioDia.maxReservas
             )
         }
     }
 
     companion object {
-        private const val TAG = "RestaurantRepository"
+        private const val TAG_COMPANION = "FirebaseRestaurantRepoC"
 
         suspend fun loadSampleData(): Int {
             val repository = FirebaseRestaurantRepository()
             var countSuccess = 0
 
-            Log.d(TAG, "Iniciando carga de datos de muestra...")
+            Log.d(TAG_COMPANION, "Iniciando carga de datos de muestra...")
 
             val sampleRestaurants = listOf(
                 Restaurante(
-                    nombre = "La Cevichería Bogotana",
-                    descripcion = "Auténticos ceviches peruanos con toque colombiano. Ambiente moderno y acogedor.",
-                    calificacionPromedio = 4.5f,
-                    galeriaImagenes = listOf(
-                        "https://example.com/cevicheria1.jpg",
-                        "https://example.com/cevicheria2.jpg"
-                    ),
-                    horario = mapOf(
-                        "lunes" to HorarioDia("12:00", "22:00"),
-                        "martes" to HorarioDia("12:00", "22:00"),
-                        "miercoles" to HorarioDia("12:00", "22:00"),
-                        "jueves" to HorarioDia("12:00", "22:00"),
-                        "viernes" to HorarioDia("12:00", "23:00"),
-                        "sabado" to HorarioDia("11:00", "23:00"),
-                        "domingo" to HorarioDia("11:00", "22:00")
-                    ),
-                    ubicacion = GeoPoint(4.624335, -74.063644)
+                    // ...
+                    // Asegúrate de usar com.google.firebase.firestore.GeoPoint aquí
+                    ubicacion = com.google.firebase.firestore.GeoPoint(4.624335, -74.063644) // O solo GeoPoint si la importación es única y correcta
                 ),
                 Restaurante(
-                    nombre = "Parrillada La Sabana",
-                    descripcion = "Auténtica parrillada bogotana. Carnes de primera calidad y ambiente familiar.",
-                    calificacionPromedio = 4.7f,
-                    galeriaImagenes = listOf(
-                        "https://example.com/parrillada1.jpg",
-                        "https://example.com/parrillada2.jpg"
-                    ),
-                    horario = mapOf(
-                        "lunes" to HorarioDia("11:30", "23:00"),
-                        "martes" to HorarioDia("11:30", "23:00"),
-                        "miercoles" to HorarioDia("11:30", "23:00"),
-                        "jueves" to HorarioDia("11:30", "23:00"),
-                        "viernes" to HorarioDia("11:30", "24:00"),
-                        "sabado" to HorarioDia("11:30", "24:00"),
-                        "domingo" to HorarioDia("11:30", "23:00")
-                    ),
-                    ubicacion = GeoPoint(4.632846, -74.085064)
+                    // ...
+                    ubicacion = com.google.firebase.firestore.GeoPoint(4.632846, -74.085064) // O solo GeoPoint
                 )
-                // Añade el resto de los restaurantes aquí...
+                // ...
             )
-
-            for (restaurant in sampleRestaurants) {
-                try {
-                    val success = repository.addRestaurant(restaurant)
-                    if (success) countSuccess++
-                    // Añadir un pequeño retraso para evitar problemas con límites de frecuencia
-                    kotlinx.coroutines.delay(100)
-                } catch (e: Exception) {
-                    Log.e(TAG, "Error al cargar el restaurante: ${restaurant.nombre}", e)
-                }
-            }
-
-            Log.d(TAG, "Carga completada: $countSuccess restaurantes añadidos")
+            // ...
             return countSuccess
         }
     }

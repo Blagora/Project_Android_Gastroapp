@@ -4,6 +4,7 @@ plugins {
     id("com.google.gms.google-services")
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.kapt")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -111,4 +112,7 @@ dependencies {
 
     // Gson para conversión JSON
     implementation("com.google.code.gson:gson:2.10.1")
+
+    // Maps de google
+    implementation("com.google.android.gms:play-services-location:21.2.0")
 }

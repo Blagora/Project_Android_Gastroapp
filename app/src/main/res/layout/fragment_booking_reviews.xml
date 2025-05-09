@@ -58,31 +58,31 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star_border"
-                android:tint="#757575"/>
+                />
 
         </LinearLayout>
 
@@ -114,31 +114,31 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star_border"
-                android:tint="#757575"/>
+                />
 
         </LinearLayout>
 
@@ -170,31 +170,31 @@
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star"
-                android:tint="#FFC107"/>
+                 />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star_border"
-                android:tint="#757575"/>
+                />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="45dp"
                 android:src="@drawable/ic_star_border"
-                android:tint="#757575"/>
+                />
 
         </LinearLayout>
 
