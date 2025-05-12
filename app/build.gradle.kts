@@ -99,7 +99,7 @@ dependencies {
 
     // OSMDroid - Mapas
     implementation("org.osmdroid:osmdroid-android:6.1.18")
-    implementation("org.osmdroid:osmdroid-wms:6.1.18")
+    implementation("org.osmdroid:osmdroid-wms:6.1.20")
     implementation("org.osmdroid:osmdroid-mapsforge:6.1.18")
     
     // Testing
