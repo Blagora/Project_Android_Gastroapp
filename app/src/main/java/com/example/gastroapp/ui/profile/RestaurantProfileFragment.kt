@@ -39,7 +39,7 @@ class RestaurantProfileFragment : Fragment() {
     private val args: RestaurantProfileFragmentArgs by navArgs()
 
     private lateinit var galleryAdapter: GalleryAdapter
-    private var currentRestaurante: Restaurante? = null // Guardamos el restaurante actual
+    private var currentRestaurante: Restaurante? = null
 
     companion object {
         private const val TAG = "RestaurantProfileFrag"
@@ -135,11 +135,11 @@ class RestaurantProfileFragment : Fragment() {
     private fun populateUi(restaurante: Restaurante) {
         binding.collapsingToolbar.title = restaurante.nombre
         binding.txtNombre.text = restaurante.nombre
-        binding.txtCategoria.text = "Categoría Placeholder" // TODO: Añadir campo
+        binding.txtCategoria.text = restaurante.categorias.joinToString(", ")
         binding.ratingBarIndicator.rating = restaurante.calificacionPromedio
         binding.txtRatingValue.text = String.format(Locale.US, "(%.1f)", restaurante.calificacionPromedio)
         binding.txtDescripcion.text = restaurante.descripcion
-        binding.txtDireccion.text = "Dirección Placeholder" // TODO: Añadir campo
+        binding.txtDireccion.text = restaurante.direccion
 
         val horarioHoy = restaurante.horario[getCurrentDay()]
         if (horarioHoy != null && horarioHoy.inicio.isNotEmpty() && horarioHoy.fin.isNotEmpty()) {
@@ -160,7 +160,7 @@ class RestaurantProfileFragment : Fragment() {
             galleryAdapter.updateData(emptyList())
         }
 
-        binding.btnOpenMap.isEnabled = restaurante.ubicacion != null // Habilita el botón solo si hay ubicación
+        binding.btnOpenMap.isEnabled = restaurante.ubicacion != null
 
         binding.btnReservarProfile.setOnClickListener {
             Toast.makeText(context, "Reservar en ${restaurante.nombre}", Toast.LENGTH_SHORT).show()
@@ -180,21 +180,12 @@ class RestaurantProfileFragment : Fragment() {
             else -> "lunes"
         }
     }
-
-    // --- Función para abrir mapa externo ---
     private fun openExternalMap(latitude: Double, longitude: Double, label: String) {
-        // Crea un Uri con el esquema geo:
-        // geo:lat,lng?q=lat,lng(label)
         val gmmIntentUri = Uri.parse("geo:$latitude,$longitude?q=$latitude,$longitude($label)")
         val mapIntent = Intent(Intent.ACTION_VIEW, gmmIntentUri)
-        // Opcional: Especifica el paquete de Google Maps si quieres forzarlo,
-        // pero es mejor dejar que el usuario elija si tiene otras apps.
-        // mapIntent.setPackage("com.google.android.apps.maps")
 
-        // Verifica si hay alguna app que pueda manejar el intent
         if (mapIntent.resolveActivity(requireActivity().packageManager) != null) {
             Log.d(TAG, "Abriendo mapa externo para: $label en $latitude,$longitude")
-            // Usa createChooser para dar opciones al usuario si hay varias apps de mapas
             val chooser = Intent.createChooser(mapIntent, "Abrir ubicación con")
             startActivity(chooser)
         } else {
@@ -210,7 +201,6 @@ class RestaurantProfileFragment : Fragment() {
         super.onDestroyView()
     }
 
-    // Adapter de galería (igual que antes)
     class GalleryAdapter(private var images: List<String>) : RecyclerView.Adapter<GalleryAdapter.ImageViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ImageViewHolder {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.item_gallery_image, parent, false)

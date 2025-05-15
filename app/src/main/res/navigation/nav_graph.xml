@@ -16,7 +16,14 @@
             app:destination="@id/mapaRestaurantesFragment" />
         <action
             android:id="@+id/action_navigation_home_to_restaurantProfileFragment"
-            app:destination="@id/restaurantProfileFragment" />
+            app:destination="@id/restaurantProfileFragment" >
+            <argument
+                android:name="restaurantId"
+                app:argType="string" />
+            <argument
+                android:name="restaurantName"
+                app:argType="string" />
+        </action>
     </fragment>
 
     <fragment
@@ -27,6 +34,20 @@
         <action
             android:id="@+id/action_navigation_restaurants_to_restaurantProfileFragment"
             app:destination="@id/restaurantProfileFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/restaurantProfileFragment"
+        android:name="com.example.gastroapp.ui.profile.RestaurantProfileFragment"
+        android:label="Perfil Restaurante"
+        tools:layout="@layout/fragment_restaurant_profile">
+        <argument
+            android:name="restaurantId"
+            app:argType="string" />
+        <argument
+            android:name="restaurantName"
+            app:argType="string"
+            android:defaultValue="Perfil Restaurante" />
     </fragment>
 
     <fragment
@@ -52,19 +73,5 @@
         android:name="com.example.gastroapp.ui.mapa.MapaRestaurantesFragment"
         android:label="Restaurantes Cercanos"
         tools:layout="@layout/fragment_mapa_restaurantes" />
-
-    <fragment
-        android:id="@+id/restaurantProfileFragment"
-        android:name="com.example.gastroapp.ui.profile.RestaurantProfileFragment"
-        android:label="{restaurantName}"
-        tools:layout="@layout/fragment_restaurant_profile">
-        <argument
-            android:name="restaurantId"
-            app:argType="string" />
-        <argument
-            android:name="restaurantName"
-            app:argType="string"
-            android:defaultValue="Perfil Restaurante" />
-    </fragment>
 
 </navigation>

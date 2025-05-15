@@ -96,17 +96,10 @@
                     android:id="@+id/txt_rating_value"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:textSize="14sp"
-                    android:textColor="#FFFFFF"
+                    android:textSize="19sp"
+                    android:textColor="@color/black"
                     android:layout_marginEnd="16dp"
                     tools:text="(4.5)"/>
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_favorito"
-                    style="?attr/materialIconButtonFilledTonalStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:icon="@drawable/ic_favorite_border" />
             </LinearLayout>
 
             <!-- Botones Acción -->
@@ -123,7 +116,7 @@
                     android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:textSize="13sp"
+                    android:textSize="11sp"
                     android:text="Información"
                     android:layout_marginEnd="4dp" />
 

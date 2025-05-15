@@ -3,6 +3,7 @@ package com.example.gastroapp.presentation.home
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.util.Log
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
@@ -39,9 +40,9 @@ class HomeFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupRecyclerView()
-        setupListeners() // Llama a esto antes de setupObservers si contiene el FAB que llama a loadRestaurantes
-        setupObservers() // setupObservers ahora llamará a loadRestaurantes internamente
-        viewModel.loadRestaurantes() // Llama para la carga inicial
+        setupListeners()
+        setupObservers()
+        viewModel.loadRestaurantes()
     }
 
     private fun setupListeners() {
@@ -81,20 +82,14 @@ class HomeFragment : Fragment() {
     }
 
     private fun actualizarRestaurantes(restaurantes: List<Restaurante>) {
-        // Si restauranteAdapter ya fue inicializado, podrías actualizar su lista interna
-        // y llamar a notifyDataSetChanged() o usar DiffUtil.
-        // Por ahora, la recreación es simple y funcionará.
         restauranteAdapter = RestauranteAdapter(
             restaurantes = restaurantes,
             onItemClick = { restaurante -> navegarADetallesRestaurante(restaurante) },
             onReservarClick = { restaurante -> navegarAReserva(restaurante) }
         )
         binding.recyclerViewRestaurantes.adapter = restauranteAdapter
-
-        // Opcional: Mostrar un mensaje si la lista está vacía
         if (restaurantes.isEmpty() && binding.progressBar.visibility == View.GONE) {
-            // Aquí podrías mostrar un TextView indicando que no hay restaurantes.
-            // Toast.makeText(requireContext(), "No hay restaurantes para mostrar.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "No hay restaurantes para mostrar.", Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -108,8 +103,24 @@ class HomeFragment : Fragment() {
     }
 
     private fun navegarADetallesRestaurante(restaurante: Restaurante) {
-        // Implementar navegación
-        Toast.makeText(requireContext(), "Ver detalles de: ${restaurante.nombre}", Toast.LENGTH_SHORT).show()
+        try {
+            val action = HomeFragmentDirections.actionNavigationHomeToRestaurantProfileFragment(
+                restaurantId = restaurante.id,
+                restaurantName = restaurante.nombre
+            )
+            findNavController().navigate(action)
+        } catch (e: IllegalStateException) {
+            Log.e("HomeFragment", "Error de estado al navegar (posiblemente NavController no listo): ${e.localizedMessage}", e)
+            Toast.makeText(context, "Error al intentar abrir el perfil.", Toast.LENGTH_SHORT).show()
+        }
+        catch (e: IllegalArgumentException) {
+            Log.e("HomeFragment", "Error en argumento de navegación (ID de acción/destino incorrecto?): ${e.localizedMessage}", e)
+            Toast.makeText(context, "No se pudo encontrar la ruta al perfil.", Toast.LENGTH_SHORT).show()
+        }
+        catch (e: Exception) {
+            Log.e("HomeFragment", "Error inesperado al navegar a detalles: ${e.localizedMessage}", e)
+            Toast.makeText(context, "Ocurrió un error inesperado.", Toast.LENGTH_SHORT).show()
+        }
     }
 
     private fun navegarAReserva(restaurante: Restaurante) {
