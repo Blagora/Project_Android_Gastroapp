@@ -1,19 +1,21 @@
 package com.example.gastroapp.data.repository
 
 import android.util.Log
+import com.google.firebase.firestore.ktx.toObjects
 import com.example.gastroapp.data.local.RestauranteDao
 import com.example.gastroapp.data.local.RestauranteEntity
 import com.example.gastroapp.domain.repository.RestauranteRepository
 import com.example.gastroapp.model.HorarioDia
 import com.example.gastroapp.model.Restaurante
-import com.google.firebase.firestore.DocumentSnapshot // Necesario para la función de mapeo
+import com.example.gastroapp.model.PlatoMenu
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.GeoPoint
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.suspendCancellableCoroutine
-import kotlinx.coroutines.tasks.await // Necesario para .await() en Tasks de Firebase
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -53,7 +55,6 @@ class RestauranteRepositoryImpl @Inject constructor(
         }
     }
 
-    // ***** IMPLEMENTACIÓN COMPLETADA DEL MÉTODO *****
     override suspend fun getRestaurantById(id: String): Restaurante? {
         return withContext(Dispatchers.IO) {
             try {
@@ -61,25 +62,29 @@ class RestauranteRepositoryImpl @Inject constructor(
                 val documentSnapshot = restaurantesRef.document(id).get().await()
                 if (documentSnapshot.exists()) {
                     Log.d(TAG, "Documento encontrado para ID: $id en Firebase")
-                    mapDocumentToRestaurante(documentSnapshot) // Usar la función auxiliar de mapeo
+                    val restaurante = mapDocumentToRestaurante(documentSnapshot)
+
+                    // Si el restaurante se mapeó correctamente, obtenemos y asignamos su menú
+                    if (restaurante != null) {
+                        Log.d(TAG, "Restaurante base '${restaurante.nombre}' mapeado. Obteniendo su menú...")
+                        val menuItems = getMenuPorRestauranteIdInternal(id) // Llamada a la función interna
+                        restaurante.menu = menuItems
+                        Log.d(TAG, "Menú con ${menuItems.size} items asignado a '${restaurante.nombre}'")
+                    } else {
+                        Log.w(TAG, "mapDocumentToRestaurante devolvió null para ID: $id")
+                    }
+                    restaurante
                 } else {
-                    Log.w(TAG, "No se encontró documento para ID: $id en Firebase. Intentando buscar en Room.")
-                    // Opcional: Fallback para buscar en la base de datos local Room
-                    // val entity = restauranteDao.getRestauranteById(id) // Necesitarías añadir este método a tu DAO
-                    // entity?.toRestaurante()
-                    null // Si no se implementa el fallback a Room, devuelve null
+                    Log.w(TAG, "No se encontró documento para ID: $id en Firebase.")
+                    null
                 }
             } catch (e: Exception) {
-                Log.e(TAG, "Error obteniendo restaurante por ID '$id'", e)
+                Log.e(TAG, "Error obteniendo restaurante por ID '$id' y su menú", e)
                 null
             }
         }
     }
-    // ***** FIN DE LA IMPLEMENTACIÓN *****
 
-
-    // Función auxiliar para mapear un DocumentSnapshot de Firestore a un objeto Restaurante
-    // Movida aquí para ser reutilizable
     private fun mapDocumentToRestaurante(document: DocumentSnapshot): Restaurante? {
         return try {
             val id = document.id
@@ -169,5 +174,30 @@ class RestauranteRepositoryImpl @Inject constructor(
             latitud = ubicacion?.latitude,
             longitud = ubicacion?.longitude
         )
+    }
+
+
+    private suspend fun getMenuPorRestauranteIdInternal(restauranteId: String): List<PlatoMenu> {
+        return try {
+            Log.d(TAG, "Obteniendo menú (interno) para restaurante ID: $restauranteId")
+            val snapshot = restaurantesRef.document(restauranteId)
+                .collection("menu")
+                .get()
+                .await()
+            val platos = snapshot.toObjects<PlatoMenu>()
+            Log.d(TAG, "Menú (interno) obtenido con ${platos.size} platos para ID: $restauranteId")
+            platos
+        } catch (e: Exception) {
+            Log.e(TAG, "Error al obtener menú (interno) para $restauranteId", e)
+            emptyList()
+        }
+    }
+
+    override suspend fun getRestauranteConMenu(restauranteId: String): Restaurante? {
+        return getRestaurantById(restauranteId)
+    }
+
+    override suspend fun getMenuPorRestauranteId(restauranteId: String): List<PlatoMenu> {
+        return getMenuPorRestauranteIdInternal(restauranteId)
     }
 }

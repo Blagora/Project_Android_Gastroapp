@@ -27,7 +27,7 @@
                 android:contentDescription="Imagen del restaurante"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                tools:src="@drawable/placeholder_restaurante"/>
+                tools:src="@drawable/placeholder_restaurante"/> <!-- Asegúrate de tener este drawable o reemplázalo -->
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
@@ -37,7 +37,6 @@
                 app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>
-
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -52,7 +51,7 @@
             android:orientation="vertical"
             android:padding="16dp">
 
-            <!-- Nombre y Categoría -->
+            <!-- Nombre y Categoría (Siempre visibles) -->
             <TextView
                 android:id="@+id/txt_nombre"
                 android:layout_width="wrap_content"
@@ -73,7 +72,7 @@
                 android:textColor="@color/gray"
                 tools:text="Categorías" />
 
-            <!-- Rating + Favorito -->
+            <!-- Rating (Siempre visible) -->
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -81,7 +80,6 @@
                 android:layout_gravity="center"
                 android:gravity="center_vertical"
                 android:paddingTop="4dp">
-
                 <RatingBar
                     android:id="@+id/ratingBarIndicator"
                     style="?android:attr/ratingBarStyleSmall"
@@ -91,7 +89,6 @@
                     android:layout_marginEnd="8dp"
                     android:theme="@style/RatingBarTheme"
                     tools:rating="4.5"/>
-
                 <TextView
                     android:id="@+id/txt_rating_value"
                     android:layout_width="wrap_content"
@@ -102,14 +99,13 @@
                     tools:text="(4.5)"/>
             </LinearLayout>
 
-            <!-- Botones Acción -->
+            <!-- Botones Acción (Siempre visibles) -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="16dp"
                 android:weightSum="3">
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_info"
                     style="?attr/materialButtonOutlinedStyle"
@@ -119,7 +115,6 @@
                     android:textSize="11sp"
                     android:text="Información"
                     android:layout_marginEnd="4dp" />
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_menu"
                     style="?attr/materialButtonOutlinedStyle"
@@ -129,7 +124,6 @@
                     android:text="Menú"
                     android:layout_marginStart="2dp"
                     android:layout_marginEnd="4dp" />
-
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btn_reservar_profile"
                     style="?attr/materialButtonStyle"
@@ -140,83 +134,115 @@
                     android:layout_marginStart="4dp" />
             </LinearLayout>
 
-            <!-- Descripción -->
-            <TextView
-                android:id="@+id/txt_descripcion"
+            <!-- Contenedor para la sección de Información -->
+            <LinearLayout
+                android:id="@+id/infoContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="16dp"
-                android:paddingBottom="8dp"
-                android:textSize="14sp"
-                android:textColor="@color/gray"
-                tools:text="Descripción larga del restaurante..." />
+                android:orientation="vertical"
+                android:visibility="visible"> <!-- Visible por defecto -->
 
-            <!-- Dirección -->
-            <TextView
-                android:id="@+id/txt_direccion"
+                <!-- Descripción -->
+                <TextView
+                    android:id="@+id/txt_descripcion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="16dp"
+                    android:paddingBottom="8dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    tools:text="Descripción larga del restaurante..." />
+
+                <!-- Dirección -->
+                <TextView
+                    android:id="@+id/txt_direccion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="8dp"
+                    android:textSize="16sp"
+                    android:textColor="?attr/colorOnSurface"
+                    android:drawablePadding="8dp"
+                    app:drawableStartCompat="@drawable/ic_location"
+                    tools:text="Dirección completa del restaurante" />
+
+                <!-- Horario Hoy -->
+                <TextView
+                    android:id="@+id/txt_horario_hoy"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="8dp"
+                    android:paddingBottom="16dp"
+                    android:textSize="14sp"
+                    android:textColor="@color/gray"
+                    app:drawableStartCompat="@drawable/ic_time"
+                    android:drawablePadding="8dp"
+                    tools:text="Horario: Abierto hoy 12:00 - 22:00" />
+
+                <!-- Galería -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Galería"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/galleryRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_gallery_image"
+                    android:layout_marginTop="8dp"
+                    android:clipToPadding="false"/>
+
+                <!-- Ubicación / Abrir Mapa -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ubicación"
+                    android:layout_marginTop="16dp"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_open_map"
+                    style="?attr/materialButtonOutlinedStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="8dp"
+                    android:text="Ver en Mapa"
+                    app:icon="@drawable/ic_map" />
+            </LinearLayout>
+
+            <!-- Contenedor para la sección de Menú -->
+            <LinearLayout
+                android:id="@+id/menuContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="8dp"
-                android:textSize="16sp"
-                android:textColor="?attr/colorOnSurface"
-                android:drawablePadding="8dp"
-                app:drawableStartCompat="@drawable/ic_location"
-                tools:text="Dirección completa del restaurante" />
+                android:orientation="vertical"
+                android:visibility="gone"> <!-- Oculto por defecto -->
 
-            <!-- Horario Hoy -->
-            <TextView
-                android:id="@+id/txt_horario_hoy"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingTop="8dp"
-                android:paddingBottom="16dp"
-                android:textSize="14sp"
-                android:textColor="@color/gray"
-                app:drawableStartCompat="@drawable/ic_time"
-                android:drawablePadding="8dp"
-                tools:text="Horario: Abierto hoy 12:00 - 22:00" />
+                <TextView
+                    android:id="@+id/textViewMenuLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menú del Restaurante"
+                    style="@style/TextAppearance.MaterialComponents.Headline6"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="8dp"/>
 
-            <!-- Galería -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Galería"
-                style="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/galleryRecyclerView"
-                android:layout_width="match_parent"
-                android:layout_height="120dp"
-                android:orientation="horizontal"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/item_gallery_image"
-                android:layout_marginTop="8dp"
-                android:clipToPadding="false"/>
-
-            <!-- Ubicación / Abrir Mapa -->
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ubicación"
-                android:layout_marginTop="16dp"
-                style="@style/TextAppearance.MaterialComponents.Headline6"/>
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btn_open_map"
-                style="?attr/materialButtonOutlinedStyle"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="8dp"
-                android:text="Ver en Mapa"
-                app:icon="@drawable/ic_map" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/menuRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/item_menu_plato" /> <!-- Asegúrate de tener item_menu_plato.xml -->
+            </LinearLayout>
 
         </LinearLayout>
-
     </androidx.core.widget.NestedScrollView>
 
-    <!-- Puedes añadir un ProgressBar si quieres mostrar carga -->
     <ProgressBar
         android:id="@+id/progressBarProfile"
         android:layout_width="wrap_content"

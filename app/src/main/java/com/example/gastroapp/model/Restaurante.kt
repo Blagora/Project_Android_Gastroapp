@@ -1,6 +1,16 @@
 package com.example.gastroapp.model
 
+import com.google.firebase.firestore.DocumentId
 import com.google.firebase.firestore.GeoPoint
+
+data class PlatoMenu(
+    @DocumentId
+    val id: String = "",
+    val nombrePlato: String = "",
+    val descripcionPlato: String = "",
+    val seccionPlato: String = "",
+    val precioPlato: Long = 0L
+)
 
 data class Restaurante(
     val id: String = "",
@@ -11,5 +21,6 @@ data class Restaurante(
     val galeriaImagenes: List<String> = listOf(),
     val calificacionPromedio: Float = 0.0f,
     val horario: Map<String, HorarioDia> = mapOf(),
-    val ubicacion: GeoPoint? = null
+    val ubicacion: GeoPoint? = null,
+    var menu: List<PlatoMenu> = emptyList()
 )
