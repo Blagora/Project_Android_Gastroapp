@@ -16,7 +16,7 @@ import com.example.gastroapp.model.HorarioDia
 import com.example.gastroapp.model.Restaurante
 import java.util.*
 
-class RestauranteAdapter(
+class   RestauranteAdapter(
     private val restaurantes: List<Restaurante>,
     private val onItemClick: (Restaurante) -> Unit,
     private val onReservarClick: (Restaurante) -> Unit

@@ -94,16 +94,16 @@ class RestauranteRepositoryImpl @Inject constructor(
             val galeriaImagenes = document.get("galeriaImagenes") as? List<String> ?: emptyList()
             val ubicacion = document.getGeoPoint("ubicacion")
             val horarioMap = document.get("horario") as? Map<String, Any> ?: emptyMap()
+            val direccionTexto = document.getString("direccionTexto")
 
-            val horario = horarioMap.mapValues { (_, datos) ->
-                if (datos is Map<*, *>) {
-                    val inicio = datos["inicio"] as? String ?: ""
-                    val fin = datos["fin"] as? String ?: ""
-                    val maxReservas = (datos["maxReservas"] as? Number)?.toInt() ?: 0
-                    HorarioDia(inicio, fin, maxReservas)
-                } else {
-                    HorarioDia("", "", 0)
-                }
+            val horarioMapFirestore = document.get("horario") as? Map<String, Map<String, String>> ?: emptyMap()
+            val horarioConvertido = horarioMapFirestore.mapValues { entry ->
+                val datosDia = entry.value
+                HorarioDia(
+                    inicio = datosDia["horaApertura"] ?: "",
+                    fin = datosDia["horaCierre"] ?: "",
+                    maxReservas = (datosDia["maxReservas"] as? Number)?.toInt() ?: 0
+                )
             }
 
             Restaurante(
@@ -112,7 +112,7 @@ class RestauranteRepositoryImpl @Inject constructor(
                 descripcion = descripcion,
                 galeriaImagenes = galeriaImagenes,
                 calificacionPromedio = calificacionPromedio,
-                horario = horario,
+                horario = horarioConvertido,
                 ubicacion = ubicacion
             )
         } catch (e: Exception) {

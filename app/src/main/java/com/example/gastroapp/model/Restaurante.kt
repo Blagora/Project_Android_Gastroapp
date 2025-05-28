@@ -20,7 +20,8 @@ data class Restaurante(
     val categorias: List<String> = listOf(),
     val galeriaImagenes: List<String> = listOf(),
     val calificacionPromedio: Float = 0.0f,
-    val horario: Map<String, HorarioDia> = mapOf(),
+    val horario: Map<String, HorarioDia> = emptyMap(),
     val ubicacion: GeoPoint? = null,
-    var menu: List<PlatoMenu> = emptyList()
+    var menu: List<PlatoMenu> = emptyList(),
+    val direccionTexto: String? = null
 )

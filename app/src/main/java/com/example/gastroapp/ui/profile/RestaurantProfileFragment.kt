@@ -201,9 +201,25 @@
             binding.txtDescripcion.text = restaurante.descripcion
             binding.txtDireccion.text = restaurante.direccion
 
-            val horarioHoy = restaurante.horario[getCurrentDay()]
-            if (horarioHoy != null && horarioHoy.inicio.isNotEmpty() && horarioHoy.fin.isNotEmpty()) {
-                binding.txtHorarioHoy.text = getString(R.string.horario_abierto_hoy, horarioHoy.inicio, horarioHoy.fin)
+            if (restaurante.direccionTexto != null && restaurante.direccionTexto.isNotEmpty()) {
+                binding.txtDireccion.text = restaurante.direccionTexto
+                binding.txtDireccion.visibility = View.VISIBLE
+            } else if (restaurante.ubicacion != null) {
+                // Si no hay direccionTexto pero sí GeoPoint, muestra las coordenadas
+                binding.txtDireccion.text = "Lat: ${String.format("%.4f", restaurante.ubicacion.latitude)}, Lon: ${String.format("%.4f", restaurante.ubicacion.longitude)}"
+                binding.txtDireccion.visibility = View.VISIBLE
+            } else {
+                binding.txtDireccion.text = "Dirección no disponible"
+                binding.txtDireccion.visibility = View.GONE
+            }
+
+
+            // --- MOSTRAR HORARIO DE HOY ---
+            val diaActual = getCurrentDay()
+            val horarioDelDia = restaurante.horario[diaActual]
+
+            if (horarioDelDia != null && horarioDelDia.inicio.isNotEmpty() && horarioDelDia.fin.isNotEmpty()) {
+                binding.txtHorarioHoy.text = getString(R.string.horario_abierto_hoy, horarioDelDia.inicio, horarioDelDia.fin)
             } else {
                 binding.txtHorarioHoy.text = getString(R.string.horario_cerrado_hoy)
             }
