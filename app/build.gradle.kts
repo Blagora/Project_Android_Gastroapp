@@ -51,8 +51,8 @@ dependencies {
     implementation(libs.androidx.constraintlayout)
     implementation("androidx.preference:preference-ktx:1.2.1")
 
-    implementation("androidx.activity:activity:1.8.2")
-    implementation("androidx.activity:activity-ktx:1.8.2")
+    implementation("androidx.activity:activity:1.10.1")
+    implementation("androidx.activity:activity-ktx:1.10.1")
 
     // Google Play Services (solo para ubicación)
     implementation("com.google.android.gms:play-services-location:21.2.0")
@@ -65,9 +65,9 @@ dependencies {
     implementation("com.google.firebase:firebase-storage-ktx")
 
     // ViewModel & LiveData
-    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.7.0")
-    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:2.9.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.9.0")
 
     // Coroutines
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
@@ -79,13 +79,13 @@ dependencies {
     kapt("com.google.dagger:hilt-android-compiler:2.50")
 
     // Navigation Component
-    implementation("androidx.navigation:navigation-fragment-ktx:2.7.7")
-    implementation("androidx.navigation:navigation-ui-ktx:2.7.7")
+    implementation("androidx.navigation:navigation-fragment-ktx:2.9.0")
+    implementation("androidx.navigation:navigation-ui-ktx:2.9.0")
 
     // Room para base de datos local
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    kapt("androidx.room:room-compiler:2.6.1")
+    implementation("androidx.room:room-runtime:2.7.1")
+    implementation("androidx.room:room-ktx:2.7.1")
+    kapt("androidx.room:room-compiler:2.7.1")
 
     // Glide para carga de imágenes
     implementation("com.github.bumptech.glide:glide:4.16.0")
