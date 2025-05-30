@@ -1,7 +1,9 @@
-package com.example.gastroapp.di // O donde tengas tus módulos de Hilt
+package com.example.gastroapp.di
 
 import android.content.Context
 import androidx.room.Room
+import androidx.room.RoomDatabase
+import androidx.sqlite.db.SupportSQLiteDatabase
 import com.example.gastroapp.data.local.AppDatabase
 import com.example.gastroapp.data.local.RestauranteDao
 import dagger.Module
@@ -17,16 +19,26 @@ object DatabaseModule {
 
     @Provides
     @Singleton
-    fun provideAppDatabase(@ApplicationContext appContext: Context): AppDatabase {
+    fun provideDatabase(@ApplicationContext context: Context): AppDatabase {
         return Room.databaseBuilder(
-            appContext,
+            context,
             AppDatabase::class.java,
-            "gastro_app_database"
-        ).build()
+            "gastroapp-db"
+        )
+        .addCallback(object : RoomDatabase.Callback() {
+            override fun onCreate(db: SupportSQLiteDatabase) {
+                super.onCreate(db)
+                db.execSQL("PRAGMA journal_mode = WAL")
+                db.execSQL("PRAGMA synchronous = NORMAL")
+            }
+        })
+        .fallbackToDestructiveMigration()
+        .allowMainThreadQueries() // Solo para desarrollo, remover en producción
+        .build()
     }
 
     @Provides
-    fun provideRestauranteDao(appDatabase: AppDatabase): RestauranteDao {
-        return appDatabase.restauranteDao()
+    fun provideRestauranteDao(database: AppDatabase): RestauranteDao {
+        return database.restauranteDao()
     }
 }

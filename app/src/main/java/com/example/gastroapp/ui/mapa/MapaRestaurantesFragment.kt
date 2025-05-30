@@ -3,6 +3,7 @@ package com.example.gastroapp.ui.mapa
 import android.Manifest
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,15 +17,18 @@ import com.example.gastroapp.databinding.FragmentMapaRestaurantesBinding
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineExceptionHandler
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.suspendCancellableCoroutine
 import kotlinx.coroutines.withContext
+import kotlin.coroutines.resume
 import org.json.JSONObject
 import org.osmdroid.config.Configuration
-import org.osmdroid.events.MapEventsReceiver
-import org.osmdroid.tileprovider.MapTileProviderBasic
 import org.osmdroid.tileprovider.cachemanager.CacheManager
 import org.osmdroid.tileprovider.tilesource.TileSourceFactory
+import org.osmdroid.util.BoundingBox
 import org.osmdroid.util.GeoPoint
 import org.osmdroid.views.CustomZoomButtonsController
 import org.osmdroid.views.MapView
@@ -47,6 +51,12 @@ class MapaRestaurantesFragment : Fragment() {
         private const val BOGOTA_LAT = 4.6097
         private const val BOGOTA_LON = -74.0817
         private const val DEFAULT_ZOOM = 15.0
+        private const val MIN_ZOOM = 11.0
+        private const val MAX_ZOOM = 19.0
+        private const val BOGOTA_BOUNDS_N = 4.836
+        private const val BOGOTA_BOUNDS_S = 4.471
+        private const val BOGOTA_BOUNDS_E = -74.009
+        private const val BOGOTA_BOUNDS_W = -74.217
     }
 
     private lateinit var currentLocationMarker: Marker
@@ -69,28 +79,75 @@ class MapaRestaurantesFragment : Fragment() {
     }
 
     private fun setupMap() {
+        // Configuración inicial de OSMDroid
         Configuration.getInstance().apply {
             userAgentValue = requireContext().packageName
-            osmdroidTileCache = File(requireContext().cacheDir, "tiles")
+            osmdroidTileCache = File(requireContext().cacheDir, "tiles").apply {
+                if (!exists()) mkdirs()
+            }
             osmdroidBasePath = requireContext().cacheDir
-            // Configurar límites de caché
-            tileFileSystemCacheMaxBytes = 200L * 1024L * 1024L // 200MB de caché
-            tileDownloadThreads = 4 // Hilos para descarga de tiles
+            // Aumentar el caché y optimizar la configuración
+            tileFileSystemCacheMaxBytes = 1024L * 1024L * 1024L // 1GB de caché
+            tileDownloadThreads = 12 // Más hilos para descarga paralela
         }
 
-        map = binding.map
-        map.setTileSource(TileSourceFactory.MAPNIK)
-        map.zoomController.setVisibility(CustomZoomButtonsController.Visibility.ALWAYS)
-        map.setMultiTouchControls(true)
+        map = binding.map.apply {
+            setTileSource(TileSourceFactory.MAPNIK)
+            zoomController.setVisibility(CustomZoomButtonsController.Visibility.ALWAYS)
+            setMultiTouchControls(true)
+            isTilesScaledToDpi = true
+            setUseDataConnection(true)
+        }
         
-        // Centrar el mapa en Bogotá
-        val bogotaPoint = GeoPoint(BOGOTA_LAT, BOGOTA_LON)
-        map.controller.apply {
-            setZoom(DEFAULT_ZOOM)
-            setCenter(bogotaPoint)
+        // Configurar límites de scroll para Bogotá
+        val boundingBox = BoundingBox(
+            BOGOTA_BOUNDS_N + 0.1,
+            BOGOTA_BOUNDS_E + 0.1,
+            BOGOTA_BOUNDS_S - 0.1,
+            BOGOTA_BOUNDS_W - 0.1
+        )
+        
+        try {
+            map.setScrollableAreaLimitDouble(boundingBox)
+            map.minZoomLevel = MIN_ZOOM
+            map.maxZoomLevel = MAX_ZOOM
+
+            // Centrar el mapa en Bogotá
+            val bogotaPoint = GeoPoint(BOGOTA_LAT, BOGOTA_LON)
+            map.controller.apply {
+                setZoom(DEFAULT_ZOOM)
+                setCenter(bogotaPoint)
+            }
+
+            // Inicializar el CacheManager
+            cacheManager = CacheManager(map)
+            
+            // Pre-descargar tiles de Bogotá en segundo plano
+            lifecycleScope.launch(Dispatchers.IO + CoroutineExceptionHandler { _, throwable ->
+                lifecycleScope.launch(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error al pre-cargar mapa: ${throwable.localizedMessage}",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }) {
+                preloadBogotaTiles()
+            }
+        } catch (e: Exception) {
+            Log.e("MapaRestaurantesFragment", "Error al configurar el mapa", e)
+            Toast.makeText(
+                requireContext(),
+                "Error al configurar el mapa: ${e.localizedMessage}",
+                Toast.LENGTH_LONG
+            ).show()
         }
 
-        // Agregar marcador de ubicación actual
+        // Configurar marcador de ubicación actual
+        setupLocationMarker()
+    }
+
+    private fun setupLocationMarker() {
         currentLocationMarker = Marker(map).apply {
             setAnchor(Marker.ANCHOR_CENTER, Marker.ANCHOR_BOTTOM)
             icon = ContextCompat.getDrawable(requireContext(), android.R.drawable.ic_menu_mylocation)
@@ -98,10 +155,120 @@ class MapaRestaurantesFragment : Fragment() {
             setVisible(false)
             map.overlays.add(this)
         }
+    }
 
-        // Configurar rendimiento
-        map.setUseDataConnection(true)
-        map.isTilesScaledToDpi = true
+    private suspend fun preloadBogotaTiles() {
+        try {
+            val initialBoundingBox = BoundingBox(
+                BOGOTA_LAT + 0.05,
+                BOGOTA_LON + 0.05,
+                BOGOTA_LAT - 0.05,
+                BOGOTA_LON - 0.05
+            )
+            
+            val priorityZoomLevels = listOf(14, 15, 16)
+            for (zoom in priorityZoomLevels) {
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Precargando mapa ${(zoom - priorityZoomLevels.first() + 1) * 33}%",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                
+                withContext(Dispatchers.Default) {
+                    try {
+                        downloadTilesWithoutDialog(initialBoundingBox, zoom)
+                    } catch (e: Exception) {
+                        Log.e("MapaRestaurantesFragment", "Error al precargar tiles del zoom $zoom", e)
+                    }
+                }
+            }
+
+            // Cargar el área completa en segundo plano
+            val fullBoundingBox = BoundingBox(
+                BOGOTA_BOUNDS_N,
+                BOGOTA_BOUNDS_E,
+                BOGOTA_BOUNDS_S,
+                BOGOTA_BOUNDS_W
+            )
+            
+            withContext(Dispatchers.Default) {
+                for (zoom in 12..13) {
+                    try {
+                        downloadTilesWithoutDialog(fullBoundingBox, zoom)
+                    } catch (e: Exception) {
+                        Log.e("MapaRestaurantesFragment", "Error al precargar tiles completos del zoom $zoom", e)
+                    }
+                }
+            }
+        } catch (e: Exception) {
+            withContext(Dispatchers.Main) {
+                Toast.makeText(
+                    requireContext(),
+                    "Error al pre-cargar mapa: ${e.localizedMessage}",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+            Log.e("MapaRestaurantesFragment", "Error al precargar tiles", e)
+            throw e
+        }
+    }
+
+    private suspend fun downloadTilesWithoutDialog(boundingBox: BoundingBox, zoom: Int) {
+        withContext(Dispatchers.IO) {
+            try {
+                suspendCancellableCoroutine<Unit> { continuation ->
+                    val callback = object : CacheManager.CacheManagerCallback {
+                        override fun onTaskComplete() {
+                            continuation.resume(Unit) {}
+                        }
+
+                        override fun onTaskFailed(errors: Int) {
+                            continuation.resume(Unit) {}
+                            Log.e("MapaRestaurantesFragment", "Error al descargar tiles: $errors errores")
+                        }
+
+                        override fun updateProgress(progress: Int, currentZoomLevel: Int, zoomMin: Int, zoomMax: Int) {
+                            Log.d("MapaRestaurantesFragment", "Progreso: $progress% zoom: $currentZoomLevel")
+                        }
+
+                        override fun downloadStarted() {
+                            Log.d("MapaRestaurantesFragment", "Iniciando descarga de zoom $zoom")
+                        }
+
+                        override fun setPossibleTilesInArea(total: Int) {
+                            Log.d("MapaRestaurantesFragment", "Tiles totales para zoom $zoom: $total")
+                        }
+                    }
+
+                    cacheManager.downloadAreaAsync(
+                        requireContext(),
+                        boundingBox,
+                        zoom,
+                        zoom,
+                        callback
+                    )
+                }
+                
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Caché completado para zoom $zoom",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            } catch (e: Exception) {
+                Log.e("MapaRestaurantesFragment", "Error al descargar tiles para zoom $zoom", e)
+                withContext(Dispatchers.Main) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Error al descargar mapa para zoom $zoom",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+            }
+        }
     }
 
     private fun setupLocationClient() {
@@ -142,7 +309,7 @@ class MapaRestaurantesFragment : Fragment() {
                     updateCurrentLocationMarker(it.latitude, it.longitude)
                     val geoPoint = GeoPoint(it.latitude, it.longitude)
                     map.controller.animateTo(geoPoint)
-                    showConfirmationDialog { confirmed ->
+                    showConfirmationDialog { confirmed -> 
                         if (confirmed) {
                             findRestaurants(it.latitude, it.longitude)
                         }
@@ -232,8 +399,19 @@ class MapaRestaurantesFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         map.onResume()
-        // Forzar la carga de tiles al reanudar
-        map.invalidate()
+        // Verificar y actualizar caché si es necesario
+        lifecycleScope.launch(Dispatchers.IO) {
+            checkAndUpdateCache()
+        }
+    }
+
+    private suspend fun checkAndUpdateCache() {
+        withContext(Dispatchers.IO) {
+            if (cacheManager.currentCacheUsage() < cacheManager.cacheCapacity() * 0.5) {
+                // Si el caché está por debajo del 50%, actualizar tiles
+                preloadBogotaTiles()
+            }
+        }
     }
 
     override fun onPause() {
