@@ -1,4 +1,4 @@
-package com.example.gastroapp.presentation.events.models
+package com.example.gastroapp.presentation.eventos.models
 
 data class Event(
     val id: String,

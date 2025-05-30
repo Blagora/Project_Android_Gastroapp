@@ -1,4 +1,4 @@
-package com.example.gastroapp.di
+    package com.example.gastroapp.di
 
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.ktx.firestore

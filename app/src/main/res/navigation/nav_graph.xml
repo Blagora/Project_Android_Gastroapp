@@ -58,9 +58,22 @@
 
     <fragment
         android:id="@+id/navigation_events"
-        android:name="com.example.gastroapp.presentation.events.EventsFragment"
+        android:name="com.example.gastroapp.presentation.eventos.EventosFragment"
         android:label="Eventos"
         tools:layout="@layout/fragment_events" />
+        <action
+            android:id="@+id/action_eventosFragment_to_detalleEventoFragment"
+            app:destination="@id/detalleEventoFragment" />
+
+    <fragment
+        android:id="@+id/detalleEventoFragment"
+        android:name="com.example.gastroapp.presentation.eventos.DetalleEventoFragment"
+        android:label="Detalle del Evento"
+        tools:layout="@layout/fragment_detalle_evento" >
+        <argument
+            android:name="eventoId"
+            app:argType="string" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"

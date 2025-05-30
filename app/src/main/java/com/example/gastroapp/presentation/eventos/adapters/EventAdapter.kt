@@ -1,4 +1,4 @@
-package com.example.gastroapp.presentation.events.adapters
+package com.example.gastroapp.presentation.eventos.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 import com.example.gastroapp.R
-import com.example.gastroapp.presentation.events.models.Event
+import com.example.gastroapp.presentation.eventos.models.Event
 
 class EventAdapter(
     private val events: List<Event>,
