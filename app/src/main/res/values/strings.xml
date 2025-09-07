@@ -14,13 +14,12 @@
     <string name="imagen_del_restaurante">Imagen del restaurante</string>
     <string name="reservar">Reservar</string>
     <string name="fragment_home_label">Inicio</string>
-    <string name="obtener_ubicacion">Obtener ubicación actual</string>
-    <string name="horario_abierto_hoy">Abierto hoy: %1$s - %2$s</string>
-    <string name="horario_cerrado_hoy">Cerrado hoy</string>
+    <string name="horario_abierto_hoy">Abierto hoy: %1$s</string>
+    <string name="horario_cerrado_hoy">Cerrado hoy: %1$s</string>
     <string name="anadiendo_restaurantes">Añadiendo restaurantes...</string>
     <string name="no_hay_restaurantes">No hay restaurantes disponibles</string>
     <string name="ver_detalles_de">Ver detalles de %1$s</string>
     <string name="reservar_en">Reservar en %1$s</string>
     <string name="refresh_restaurants">Actualizar lista de restaurantes</string>
-
+    <string name="obtener_ubicacion">Obtener ubicación actual</string>
 </resources>
